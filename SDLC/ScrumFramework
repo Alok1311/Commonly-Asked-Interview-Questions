@@ -1,0 +1,49 @@
+Waterfall Model
+The classical waterfall model is the basic software development life cycle model. It is very simple but idealistic.
+Earlier this model was very popular but nowadays it is not used. But it is very important because all the other
+software development life cycle models are based on the classical waterfall model.
+
+The classical waterfall model divides the life cycle into a set of phases. This model considers that one phase can
+be started after the completion of the previous phase. That is the output of one phase will be the input to the next
+phase. Thus the development process can be considered as a sequential flow in the waterfall. Here the phases do
+not overlap with each other.
+
+The main difficulties included handling change requests from customers during project development and the high cost
+and time required to incorporate these changes. To overcome these drawbacks of Waterfall model, in the mid-1990s
+the Agile Software Development model was proposed.
+
+Agile Model
+The Agile model was primarily designed to help a project to adapt to change requests quickly. So, the main aim of the
+Agile model is to facilitate quick project completion.
+
+In the Agile model, the requirements are decomposed into many small parts that can be incrementally developed.
+The Agile model adopts Iterative development. Each incremental part is developed over an iteration. Each iteration
+is intended to be small and easily manageable and can be completed within a couple of weeks only.
+
+Scrum Framework
+Scrum is the type of Agile framework.
+
+Sprint:
+A Sprint is a time period of one month or less. A new Sprint starts immediately after the completion of the previous Sprint.
+
+Release:
+When the product is completed then it goes to the Release stage.
+
+Sprint Review:
+The sprint review is one of the most important ceremonies in Scrum where the team gathers to review completed work
+and determine whether additional changes are needed.
+Spring Retrospective:
+The sprint retrospective is a recurring meeting dedicated to discussing what went well and what can be improved in a sprint.
+Product Backlog:
+Product backlog contains all the requirements and features that are required for a product.
+Sprint Backlog:
+Sprint Backlog categorizes which action needs to be done in what sprint.
+Sprint Planning:
+Organizing sprints, stage after product backlog and before sprint backlog.
+
+Scrum Master
+Scrum Master organizes the meetings, clears obstacles and establishes an environment where the team can be affective.
+
+Development team is cross functional, meaning they know all the processes, say testing and development etc.
+
+

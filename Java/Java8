@@ -1,0 +1,42 @@
+1. Java 8 provides many features, some of them are
+Lamda Expressions
+Method references,
+Functional interfaces,
+Stream API,
+Default methods,
+Base64 Encode Decode,
+Static methods in interface,
+Optional class,
+Collectors class,
+ForEach() method,
+
+Lamda Expressions :
+Lambda expression helps us to write our code in functional style.
+It provides a clear and concise way to implement SAM interface(Single Abstract Method) by using an expression.
+
+Method Reference :
+Java 8 Method reference is used to refer method of functional interface . It is compact and easy form of lambda expression.
+Each time when you are using lambda expression to just referring a method, you can replace your lambda expression with
+method reference.
+
+Functional Interface :
+An Interface that contains only one abstract method is known as functional interface. It can have any number of default and
+static methods. It can also declare methods of object class.
+
+Types :
+
+Predicate : Results in Boolean
+Consumer : Only takes input, no output
+Function : Takes input and returns output
+Supplier : No input only output
+
+Optional :
+Java introduced a new class Optional in Java 8. It is a public final class which is used to deal with NullPointerException
+in Java application. We must import java.util package to use this class. It provides methods to check the presence of value
+for particular variable.
+
+forEach() :
+Java provides a new method forEach() to iterate the elements. It is defined in Iterable and Stream interfaces.
+It is a default method defined in the Iterable interface. Collection classes which extends Iterable interface
+can use forEach() method to iterate elements.
+This method takes a single parameter which is a functional interface. So, you can pass lambda expression as an argument.

@@ -1,0 +1,56 @@
+Diff between Monolithic, Service Oriented Architecture, Microservices
+
+Monolithic architecture is like a big container which all the software components of the applications are assembled
+together and tightly packed
+
+SOA
+Service oriented architecture is a collection of services which communicate with each other. The communication involves
+simpler data passing or it could involve two or more services coordinating some activity.
+
+Microservices architecture is an architectural design that styles an application as a collection of small autonomous
+services modeled around a business domain.
+
+Main diff between SOA and Microservices is based on sharing of data and info. SOA shares and reuses the data as much as
+possible where as in microservices the data sharing is as little as possible.
+
+Microservices
+Microservices is an architecture where the application is exposed as a loosely coupled services which can be independently
+developed, deployed and maintained. Each service exposed is referred to as microservice. Each service performs a unique
+function.
+
+Polygot architecture is maintained using microservices, eg if team a is developing a microservice using java then team b
+can develop another microservice using pyhton.
+
+Diff teams can use different versions too of same language.
+
+In case of monolithic architecture, as the entire application is deployed altogether, if one functionality goes down the
+entire application goes down.
+
+Disadvantages
+Complex, difficult to maintain, difficult to debug if code wasn't done using right practices, need skilled people.
+
+Microservices should only be done for complex applications, should not be done for simpler applications.
+
+Service Discovery
+When we call one service we can use the porn number locally, but when deployed this url for calling a service maybe dynamic
+so if service 1 wants to call service 2, it will use the service discovery to get the port.
+
+Decentralization
+Microservice architecture leads to distributed system. The data management is decentralized. There will be monolithic
+database containing all the data related to business functionality of that service.
+
+BlackBox
+Each microservice is defined as black box. The details and complexity of one service is hidden from another.
+
+Synchronous Communication
+In synchronous communication, the client service waits for the response from server service within a time limit. The
+possible solution is using Http protocol, via rest api for interservice communication.
+
+Asynchronous Communication
+In this the client service does not wait for the response from another service. The message producer generates a message
+and sends the message to event bus. The message producer waits only for the acknolewdgement from the event bus to know
+whether the message was received or not. The two communicating service don't even know each other. eg Rabbit mq
+this is based on advanced message queuing protocol
+
+OAuth, which stands for “Open Authorization,” allows third-party services to exchange your information without you
+ having to give away your password.

@@ -1,0 +1,61 @@
+What is DataBase
+In computing, a database is an organized collection of data stored and accessed electronically. Small databases can be
+stored on a file system, while large databases are hosted on computer clusters or cloud storage.
+
+DBMS
+DBMS is a collection of programs that facilitates users to create and maintain a database. In other words, DBMS provides
+us an interface or tool for performing different operations such as the creation of a database, inserting data into it,
+deleting data from it, updating the data, etc.
+
+Advantages of DBMS
+Authorization, reduces complexity, provides backup and recovery, data consistency.
+
+Checkpoint in DBMS
+The Checkpoint is a type of mechanism where all the previous logs are removed from the system and permanently stored
+in the storage disk.
+
+RDBMS
+RDBMS stands for Relational Database Management Systems. It is used to maintain the data records and indices in tables.
+RDBMS is the form of DBMS which uses the structure to identify and access data concerning the other piece of data in
+the database. RDBMS is the system that enables you to perform different operations such as- update, insert, delete,
+manipulate and administer a relational database with minimal difficulties.
+
+Types of Database Language
+Data Definition Language (DDL) e.g., CREATE, ALTER, DROP, TRUNCATE, RENAME, etc. All these commands are used for updating
+the data that's why they are known as Data Definition Language.
+
+Data Manipulation Language (DML) e.g., SELECT, UPDATE, INSERT, DELETE, etc. These commands are used for the manipulation
+of already updated data that's why they are the part of Data Manipulation Language.
+
+DATA Control Language (DCL) e.g., GRANT and REVOKE. These commands are used for giving and removing the user access on
+the database. So, they are the part of Data Control Language.
+
+Transaction Control Language (TCL) e.g., COMMIT, ROLLBACK, and SAVEPOINT. These are the commands used for managing
+transactions in the database. TCL is used for managing the changes made by DML.
+
+ACID Properties
+
+ATOMICITY: Atomicity is more generally known as ?all or nothing rule.' Which implies all are considered as one unit, and
+they either run to completion or not executed at all.
+
+CONSISTENCY: This property refers to the uniformity of the data. Consistency implies that the database is consistent before
+and after the transaction.
+
+ISOLATION: This property states that the number of the transaction can be executed concurrently without leading to the
+inconsistency of the database state.
+
+DURABILITY: This property ensures that once the transaction is committed it will be stored in the non-volatile memory
+and system crash can also not affect it anymore.
+
+Keys
+Primary key: The Primary key is an attribute in a table that can uniquely identify each record in a table. It is
+compulsory for every table.
+
+Candidate key: The Candidate key is an attribute or set of an attribute which can uniquely identify a tuple. The Primary
+key can be selected from these attributes.
+
+Super key: The Super key is a set of attributes which can uniquely identify a tuple. Super key is a superset of the
+candidate key.
+
+Foreign key: The Foreign key is a primary key from one table, which has a relationship with another table.
+It acts as a cross-reference between tables.

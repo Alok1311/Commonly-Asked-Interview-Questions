@@ -1,0 +1,5 @@
+Factory Pattern
+The factory method pattern entails a factory class with an abstract method for creating the desired object.
+Often, we want to create different objects based on a particular context.
+For example, our application may require a vehicle object. In a nautical environment, we want to create boats,
+but in an aerospace environment, we want to create airplanes:

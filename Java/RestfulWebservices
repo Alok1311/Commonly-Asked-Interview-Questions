@@ -1,0 +1,102 @@
+API
+
+Application programming interface allows program to communicate, we can also say that it allows client to communicate
+with the server.
+
+Restful webservices
+Services that follow rest architecture. Rest stands for representational state transfer and uses http protocol for
+communication.
+
+Rest Resource
+The contents in the rest architecture is considered as resource. The REST Server provides access to these resources
+whereas the REST client consumes (accesses and modifies) these resources. Every resource is identified globally by
+means of a URI.
+
+Uniform Resource Identifier is the full form of URI which is used for identifying each resource of the REST architecture.
+Uniform Resource Name identifies the resource by means of a name that is both unique and persistent.
+Uniform Resource Locator has the information regarding fetching of a resource from its location.
+
+Features
+Based on client server model
+Uses Http protocol
+
+Concept of Statelessness
+The REST architecture is designed in such a way that the client state is not maintained on the server. The context is
+provided by the client to the server using which the server processes the client’s request. The session on the
+server is identified by the session identifier sent by the client.
+
+JAX-RS
+As the name itself stands (JAX-RS= Java API for RESTful Web Services) is a Java-based specification defined by JEE
+(Java Enterprise Edition) for the implementation of RESTful services.
+
+HTTP Methods
+Get
+Put
+Post
+Delete
+Patch
+Options(Returns list of supported operation)
+
+What is difference between put and PATCH in rest?
+PUT means replace the entire resource with given data (so null out fields if they are not provided in therequest),
+while PATCH means replace only specified fields.
+
+Messaging in terms of restful webservices
+The technique of sending a message from the REST client to the REST server in the form of an HTTP request and the
+server responding back with the response as HTTP Response is called Messaging.
+
+Idempotent
+The meaning of idempotent is that even after calling a single request multiple times, the outcome of the request
+should be the same. Means it should not change the state. Eg get.
+
+Components of Http Request
+Method/Verb − This part tells what methods the request operation represents.
+Methods like GET, PUT, POST, DELETE, etc are some examples.
+
+URI − This part is used for uniquely identifying the resources on the server.
+
+HTTP Version − This part indicates what version of HTTP protocol you are using. An example can be HTTP v1.1.
+
+Request Header − This part has the details of the request metadata such as client type, the content format supported,
+message format, cache settings, etc.
+
+Request Body − This part represents the actual message content to be sent to the server.
+
+Components of Http Response
+
+Response Status Code − This represents the server response status code for the requested resource.
+Example- 400 represents a client-side error, 200 represents a successful response.
+
+HTTP Version − Indicates the HTTP protocol version.
+
+Response Header − This part has the metadata of the response message. Data can describe what is the content length,
+content type, response date, what is server type, etc.
+
+Response Body − This part contains what is the actual resource/message returned from the server.
+
+Payload
+Payload refers to the data passes in the request body. It is not the same as the request parameters.
+The payload can be sent only in POST methods as part of the request body.
+
+Using Logger we can use swagger
+
+Safe methods are those that do not change any resources internally. These methods can be cached and can be
+retrieved without any effects on the resource.
+
+Rest Template(Important)
+The RestTemplate is the main class meant for the client-side access for Spring-based RESTful services.
+The communication to the server is accomplished using the REST constraints. This is similar to other template classes
+such as JdbcTemplate, HibernateTemplate, etc provided by Spring. The RestTemplate provides high-level implementation
+details for the HTTP Methods like GET, POST, PUT, etc, and gives the methods to communicate using the URI template,
+URI path params, request/response types, request object, etc as part of arguments.
+
+Difference Between Controller and Rest Controller(Imp)
+Controller is mostly used is Spring MVC where model data needs to be rendered using view
+RestController represents restful webservice in Spring, it is used in case of RESTful web service that returns object
+values bound to response body.
+
+Message Converter in terms of Spring Rest
+HttpMessageConverter is a strategic interface that specified a converter for conversion between HTTP Requests and responses.
+Spring REST uses the HttpMessageConverter for converting responses to various data formats like JSON, XML, etc.
+Spring makes use of the “Accept” header for determining the type of content the client expects.
+Based on this, Spring would find the registered message converter interface that is capable of this conversion.

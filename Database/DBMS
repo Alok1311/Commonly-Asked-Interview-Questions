@@ -59,3 +59,24 @@ candidate key.
 
 Foreign key: The Foreign key is a primary key from one table, which has a relationship with another table.
 It acts as a cross-reference between tables.
+
+Max limit for indexed columns in a table is 16 by mysql
+
+Delete table is logged, every row is logged, drop deletes entire table and is not logged, truncate is similar to delete
+without where and can be rolled back.
+
+Log Meaning?
+Delete statement removes the records one by one and it logs each entry into the transaction log.
+
+MySQL does not have a boolean (or bool) data type. Instead, it converts boolean values into integer data types (TINYINT).
+When you create a table with a boolean data type, MySQL outputs data as 0, if false, and 1, if true.
+
+If strict SQL mode is not enabled and you assign a value to a CHAR or VARCHAR column that exceeds the column's maximum length,
+the value is truncated to fit and a warning is generated.
+
+Strict SQL Mode. Strict mode controls how MySQL handles invalid or missing values in data-change statements such as
+INSERT or UPDATE.
+
+Does JavaScript support thread?
+JavaScript is a single-threaded language because while running code on a single thread, it can be really easy to
+implement as we don't have to deal with the complicated scenarios that arise in the multi-threaded environment like a deadlock. Since JavaScript is a single-threaded language, it is synchronous in nature.

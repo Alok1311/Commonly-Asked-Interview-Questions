@@ -32,7 +32,7 @@ Complex, difficult to maintain, difficult to debug if code wasn't done using rig
 Microservices should only be done for complex applications, should not be done for simpler applications.
 
 Service Discovery
-When we call one service we can use the porn number locally, but when deployed this url for calling a service maybe dynamic
+When we call one service we can use the port number locally, but when deployed this url for calling a service maybe dynamic
 so if service 1 wants to call service 2, it will use the service discovery to get the port.
 
 Decentralization

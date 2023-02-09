@@ -1,7 +1,7 @@
 1. WHAT IS SPRINGBOOT
 
 SPRINGBOOT IS A MODULE OF SPRING WHICH PROVIDES RAD(RAPID APPLICATION DEVELOPMENT) TO THE SPRING FRAMEWORK, IT IS USED
-TO CREATE STANDALONE SPRING BASED APPLICATION, THAT YOU CAN JUST RUN AS IT NEEDS VERY LITTLE CONFIGURATION
+TO CREATE STANDALONE SPRING BASED APPLICATION, THAT YOU CAN JUST RUN AS IT NEEDS VERY LITTLE CONFIGURATION.
 
 ADVANTAGES
 
@@ -91,3 +91,11 @@ IS PUSHED TO PRODUCTION WE CAN CHECK MONITOR OUR APPLICATION USING THESE HTTP EN
  want to send a request) and the data they want to send to that server URL.
 
  SpringApplication.run simply returns the object of application context
+
+ @Component is a class-level annotation, but @Bean is at the method level, so @Component is only an option when a class's source code is editable.
+ @Bean can always be used, but it's more verbose. @Component is compatible with Spring's auto-detection, but @Bean requires manual class instantiation.
+ Bean works only when class is also annotated with @Configuration but Component does not require configuration.
+
+ What is the difference between @bean and @configuration?
+ @Configuration - It is like beans. xml but Java-based bean configuration. It means class annotated with this annotation is the place where beans are
+ configured and will be a candidate for auto-detection. In this class, methods are annotated with @Bean which return an object of the class.

@@ -53,7 +53,7 @@ IT IS LOADED FIRST BY THE CLASSLOADER. THERE ARE THREE BUILT-IN CLASSLOADERS IN 
 
 BOOTSTRAP CLASSLOADER : IT LOADS THE RT.JAR FILE WHICH CONTAINS ALL CLASS FILES OF JAVA STANDARD EDITION LIKE JAVA.LANG
 PACKAGE CLASSES, JAVA.NET PACKAGE CLASSES, JAVA.UTIL PACKAGE CLASSES, JAVA.IO PACKAGE CLASSES, JAVA.SQL PACKAGE CLASSES,
- ETC.
+ETC.
 
 EXTENSION CLASSLOADER : IT LOADS THE JAR FILES LOCATED INSIDE $JAVA_HOME/JRE/LIB/EXT DIRECTORY.
 
@@ -105,7 +105,7 @@ CONSIDER THE FOLLOWING EXAMPLE.
 
 METHOD
 
-USED TO EXPOSE BEHAVIOUR OF OBJECT, MUST HAVE RETURN TYPE, INVOKED EXPLICITLY, MAY OR MAYNOT HAVE SAME CLASS NAME, NOT
+USED TO EXPOSE BEHAVIOUR OF OBJECT, MUST HAVE RETURN TYPE, INVOKED EXPLICITLY, MAY OR MAY NOT HAVE SAME CLASS NAME, NOT
 PROVIDED BY COMPILER.
 
 WHEN ONLY PARAMETERIZED CONSTRUCTOR IS THERE, NO DEFAULT CONSTRUCTOR IS INSTANTIATED BY COMPILER
@@ -656,3 +656,35 @@ THREAD LIFECYCLE
 NEW -> RUNNABLE -> RUNNING -> NON-RUNNABLE(BLOCKED) -> TERMINATED
 
 45. POLYMORPHISM MEANS HAVING MANY FORMS.
+
+THREADSAFE
+
+As we know Java has a feature, Multithreading, which is a process of running multiple threads simultaneously. When multiple
+threads are working on the same data, and the value of our data is changing(meaning it is mutable), that scenario is not
+thread-safe and we will get inconsistent results. When a thread is already working on an object and preventing another
+thread on working on the same object, this process is called Thread-Safety.
+
+What is Recursion?
+The process in which a function calls itself directly or indirectly is called recursion and the corresponding
+function is called a recursive function.
+
+Properties of Recursion:
+Performing the same operations multiple times with different inputs.
+In every step, we try smaller inputs to make the problem smaller.
+A base condition is needed to stop the recursion otherwise infinite loop will occur.
+What is Backtracking?
+Backtracking is an algorithmic technique for solving problems recursively by trying to build a solution incrementally,
+one piece at a time, removing those solutions that fail to satisfy the constraints of the problem at any point in time
+(by time, here, is referred to the time elapsed till reaching any level of the search tree).
+
+Backtracking can be defined as a general algorithmic technique that considers searching every possible combination
+in order to solve a computational problem.
+
+Recursion does not always need backtracking, while backtracking always require recursion
+recursion is top down approach
+
+Dynamic programming has two types
+Top Down or Memoization, in which we store value and when it is repeated we simply return rather than calling recursion
+from it again
+Bottom up
+In this we solve sub problems to solve the bigger problems

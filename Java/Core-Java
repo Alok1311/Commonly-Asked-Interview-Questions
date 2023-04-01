@@ -688,3 +688,5 @@ Top Down or Memoization, in which we store value and when it is repeated we simp
 from it again
 Bottom up
 In this we solve sub problems to solve the bigger problems
+
+Parent of all Classes - Object

@@ -53,4 +53,4 @@ whether the message was received or not. The two communicating service don't eve
 this is based on advanced message queuing protocol
 
 OAuth, which stands for “Open Authorization,” allows third-party services to exchange your information without you
- having to give away your password.
+having to give away your password.

@@ -112,11 +112,11 @@ The above was example of single thread doing single task
 Single task using multiple thread
 
 
-public static void main(String[] args) {
-Test t1 = new Test(); //Creation of main thread
-t.start();//Creation of thread1
-Test t2 = new Test();
-t2.start();//Creation of thread2
+public static void main(String[] args) {//Creation of main thread
+Test t1 = new Test(); //Creation of thread1
+t.start();
+Test t2 = new Test();//Creation of thread2
+t2.start();
 
 It can be asked in interview in above how many threads are created, the answer is 3 as we can see above
 }
@@ -150,3 +150,274 @@ b.start();
 In interview it can be asked which thread gets executed first, one might assume a will get executed first but that is
 not the case, be it in Multiple Task using Multiple Thread or Single Task using Multiple Thread, the execution
 of thread is done by JVM and is done using thread scheduling algos.
+
+Thread Constructors
+
+Default Constructor
+Used when a class extends thread class, then simply the object of that class can start the thread.
+
+Constructor which takes runnable as parameter.
+Used when a class implements runnable interface, in this case we have to create a new object of thread class and pass
+the runnable as parameter.
+
+Constructor which takes string as parameter.
+When we create a thread, every thread is provided a name, we can also name our thread object and pass the name as parameter
+in thread constructor.
+
+Constructor which takes string and runnable as parameters.
+When we create object of class which implements runnable, to pass on to thread with its name as parameters along with the
+runnable can also be done.
+
+These were all single thread constructors
+
+Thread Group with string name
+A constructor which takes object of thread group and thread name as parameters.
+
+Thread Group with runnable object
+A constructor which takes object of thread group and runnable object as parameters.
+
+Thread Group with runnable object and string name
+A constructor which takes runnable object, string name and thread group as parameters.
+
+Thread Group with runnable object, string name and stack size
+A constructor which takes thread group, runnable object, string name and stack size as parameters.
+
+
+Thread Methods
+
+Basic Methods
+run - used to execute task
+start - used to start a thread or place a thread in runnable state
+currentThread - static method which provides thread reference
+isAlive - method which tells whether the thread is in dead state or not
+
+Naming Methods
+getName - method which gets the name of thread
+setName - method which sets the name of thread
+
+Daemon Thread Methods
+isDaemon - in detail below
+setDaemon - takes boolean parameter
+
+Priority Based Methods
+getPriority - tells the priority of thread
+setPriority - sets the priority of thread
+
+Methods to stop execution of threads
+sleep , yield, join - used to pause or stop execution of thread, there are other methods like suspend, resume, stop or
+destroy but these methods are deprecated from java.
+
+Interrupting the thread Methods
+interrupt, isInterrupted, interrupted - used to interrupt or check if thread is interrupted.
+
+
+Inter Thread Communication Methods
+
+These are in class Object
+
+these are wait(), notify() and notifyAll()
+
+Thread Naming Methods
+
+class A extends Thread {
+public static void main(String[] args) {
+System.out.println(Thread.currentThread().getName()) // will print main
+Thread.currentThread.setName("mainThread")
+System.out.println(Thread.currentThread().getName()) // will print mainThread
+
+A t1 = new A();//name allocated by jvm is Thread-0
+t1.start();
+A t2 = new A();//name allocated by jvm is Thread-1
+t2.start();
+
+System.out.println(100/0)//exception in thread "main"
+}
+public void run() {
+System.out.println(Thread.currentThread().getName())//will print Thread-0 and then Thread-1, ofc we can also change the name by setName
+System.out.println(100/0)//exception in thread "Thread-0" or "Thread-1" depending upon which was executing
+}
+
+one thing to observe here is every task in the main is done by the main thread, such as creating new thread or calling it, also as we know when we get an exception
+we get message, exception in Thread main, that simply means there was an exception while executing main thread, it can also happen we face exception while executing
+some other thread, see above for reference.
+}
+
+Daemon Thread
+
+Definition and Use: Runs in the background and provides service to the running thread
+Eg : Garbage Collector, how Garbage collector works : suppose main thread is running and it suffers memory leak so garbage collector removes the waste objects to
+provide memory so main thread can work properly.
+
+Methods :
+
+setDaemon : this is present inside the thread class, we have to pass true as parameter to set a particular thread as daemonThread
+isDaemon : returns boolean whether thread is daemon or not
+
+implementation
+
+class Test extends Thread {
+
+public void run() {
+System.out.println("Daemon Thread")
+}
+
+public static void main(String[] args) {
+System.out.println("main thread");
+Test t = new Test();
+t.setDaemon(true);
+t.start();
+}
+
+//Above thread will work till main thread works
+}
+
+Points to remember :
+1.If main thread is not doing any task daemon thread will not do anything as the main purpose of daemon is to provide service to other threads
+2.If we start thread and then set it as Daemon, there will be illegal thread exception
+3.For the above reason is why we can never set main thread daemon.
+4.If we create a new thread inside Daemon Thread then by default jvm sets it as Daemon Thread.
+5.Daemon thread goes in dead state as soon as the threads which it was providing service dies.
+6.Most of the times Daemon Thread has least priority, if we have to mark it's priority we must keep it low.
+
+
+Priorities
+As mentioned above there are two methods for thread priorities, setPriority and getPriority
+setPriority : It takes int parameter and the range should be between 1 to 10, as priority ranges from 1 to 10 where 10 being the max priority,
+if we pass any value which is not in between 10, then there is a runtimeException ie illegal argument exception
+
+Thread class has already present three static variables, i.e MIN_PRIORITY(value - 1), NORM_PRIORITY(value-5), MAX_PRIORITY(value-10)
+it can be asked in interview these names above.
+
+We can also change the main thread priority, by Thread.currentThread().setPriority(val), by default priority of main is 5,
+If priority of 2 or more thread is same, then it is totally dependent on jvm to execute which thread.
+
+Priorities are inherited from parent, as we define a thread in main, then if we don't set it's priority it's by default set to 5.
+Thread.getPriority(), gives the value of the priority of thread.
+
+Priorities depend upon the system, windows does not support priorities, however this topic can be asked in interview.
+
+Sleep Method
+
+There are two types of sleep methods, both are static first is public static native void sleep(long milliseconds), what is native?,
+it is used to express that this was written in some other language, this method throws illegal argument exception if the value is less than 0.
+
+second is public static void sleep(long milliseconds, int nano), this also throws illegal argument exception if value of milliseconds or nano is 0,
+or if nano is larger than certain number.
+
+If any thread is sleeping and is interrupted by another thread it throws Interrupted Exception
+Sleep always pauses the current thread execution, the JVM upon finding sleep pauses the current thread it was execting
+
+When a thread goes to sleep, the thread scheduler assigns some other thread to cpu if it exists, so there is no gurantee that thread will wake exactly
+after time of sleep. It totally depends on thread scheduler.
+
+When thread sleeps it does not loose any locks or monitors it had acquired.
+
+
+Yield
+
+The yield method in thread is used to stop the current thread execution and let that thread give hint to the thread
+scheduler to execute other threads.Until Java5 yield used sleep inside but since java6 it tries to give hint to thread scheduler.
+It totally depends on thread scheduler whether it will take the hint or not. The yield method is only of one type and is static and native.
+public static native void yield();
+
+public class A extends Thread {
+public void run() {
+Thread.yield()//to stop thread t1.
+for(int i=0;i<5;i++) {
+System.out.println(i+1);
+}
+}
+public static void main(String[] args) {
+A t1 = new A();
+t1.start;
+Thread.yield();//to stop main thread
+
+for(int i=0;i<5;i++) {
+System.out.println(i+1);
+}
+}
+}
+
+Join Method
+a very powerful method in thread class, this allows a thread to wait for some other thread to complete it's execution first. Join method is of three types
+1.public void join();2.public void join(long milli),3.public void join(long milli, int nano)
+
+public class A extends Thread {
+public void run() {
+for(int i=0;i<5;i++) {
+System.out.println(i+1);
+}
+}
+public static void main(String[] args) {
+A t1 = new A();
+t1.start;
+t1.join();//in this case first thread t1 will be executed and main thread will wait for t1 to execute
+for(int i=0;i<5;i++) {
+System.out.println(i+1);
+}
+}
+}
+
+public class A extends Thread {
+static Thread main;
+public void run() {
+main.join();//First main thread will be executed first after that thread t1 will start it's execution.
+for(int i=0;i<5;i++) {
+System.out.println(i+1);
+}
+}
+public static void main(String[] args) {
+main = Thread.currentThread();
+A t1 = new A();
+t1.start;
+
+
+for(int i=0;i<5;i++) {
+System.out.println(i+1);
+}
+}
+}
+
+Difference between sleep, yield and join
+Purpose = All these three aim to stop a thread, sleeps purpose is to stop a thread for particular time, yield purpose is to stop so that other thread can be executed,
+join purpose is to wait for some other thread to get executed first and then itself.
+
+Examples = sleep - bulb, timer. yield - shopping when someone older is waiting with less items so you step aside to let them take, join - some department or job
+application where you are asked to fill particular form first before filling next.
+
+How the thread invokes again = sleep - automatically after time period. Yield - automatically invoked by thread scheduler. Join - when other thread completes it's task
+
+Methods = mentioned above. Sleep and Join has overloaded methods whereas Yield does not. Sleep has 1 native method out of 2, join has 0 native method, yield has 1.
+
+Exception = Join and Sleep throw interrupted exception, yield does not.
+
+
+Interrupt
+
+It is used to interrupt and executing thread. The thread to be interrupted should be in sleep or wait state, otherwise thread will work normally.
+When we use interrupt to interrupt a thread in sleep or wait state it will throw interrupt exception. method is public void interrupt();
+
+
+
+public class A extends Thread {
+public void run() {
+
+try {
+for(int i=0;i<5;i++) {
+Thread.currentThread().sleep(1000);
+System.out.println(i+1);
+}
+}
+catch(InterruptException e) {
+System.out.println("thread is interrupted");
+}
+}
+public static void main(String[] args) {
+A t1 = new A();
+t1.start;
+t1.interrupt
+}
+}
+
+in this above when t1 is in sleep state it will be interrupted in the main thread so it will throw interrupt exception and inside catch we can see the interrupt message,
+if t1 wasn't in sleep it would not have thrown exception hence no change would have happened.

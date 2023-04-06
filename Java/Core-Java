@@ -690,3 +690,9 @@ Bottom up
 In this we solve sub problems to solve the bigger problems
 
 Parent of all Classes - Object
+
+
+Can we overload two methods with same name same parameters but different return type
+
+No we cannot because during the time of compilation, compiler only considers name and parameters and not the return type
+hence it throws compile time error.

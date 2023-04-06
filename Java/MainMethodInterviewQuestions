@@ -1,0 +1,23 @@
+1.Can we use String... args instead of String[] args
+yes we can use String..., ... simply means we have variable arguments, suppose a method has parameter int...,
+that means that method can be method(1) or method(1,2,3,4), it can take variable number of arguments.
+2.Can we overload main method?
+yes we can overload main method but jvm will always call the main method with String[] args or String... args.
+3.Can we override main method?
+No we can not override main method as main method is static in nature and we can not override static methods.
+4.Can we make main method final?
+Yes we can
+5.How to call non static method from main, Create object of class the method is in and then simply call the method.
+6.Can we make main Synchronized?
+Yes we can.
+7.Why is main method static?
+Suppose a class has two constructors with different parameters, the upon type of initialization of object, jvm would have got confused
+due to the ambiguity on which method it should select, this is my main method is static.
+8.What happen if we declare main method non-static?
+Run Time Error
+9.Can we declare class which we have to run without main method?
+Only till Java5.
+10.Can we declare main method with different access modifier than public?
+No we can not, it will throw rte.
+11.Can we change return type of main method?
+No, it will throw rte.

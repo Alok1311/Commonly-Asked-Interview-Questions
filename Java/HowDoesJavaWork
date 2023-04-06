@@ -1,0 +1,36 @@
+How Does Java Work
+
+Java consists of three things
+
+JDK, JVM, JRE
+
+JDK consists of JVM and all the development tools such as compiler, debugger or other tools required to build up application
+
+JVM consists of JRE and all the other files such as library files like util, awt, lang packages.
+
+JRE consists of interpreter and compiler
+
+First we install JDK, then we have to set environment variables, this is done because the computer would have no knowledge
+of java compiler command javac
+
+now we write our program and save it anywhere we want.
+
+after this in that directory run javac, this will compile the program and will save it into a bytecode as a class
+file. for eg javac Abc.java
+
+after this to run the class file we will simply write command java Abc.class, by this the jvm will start working on
+the class file to convert to machine language using interpreter, which will convert the bytecode to machine language,
+jit compiler is also part of jvm, when interpreter sees methods getting repeated, jit provides direct native code for
+that part so that re-interpretation is not required.
+
+There are also class loaders
+
+bootstrap class loader - searches for native classes
+extension class loader - searches for lib classes
+application class loader - searches in present directories
+
+if a class is not found in either then class not found error is thrown, the finding of class is first in bootstrap then
+in extension then in application.
+
+
+

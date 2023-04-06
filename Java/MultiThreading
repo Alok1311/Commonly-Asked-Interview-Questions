@@ -421,3 +421,276 @@ t1.interrupt
 
 in this above when t1 is in sleep state it will be interrupted in the main thread so it will throw interrupt exception and inside catch we can see the interrupt message,
 if t1 wasn't in sleep it would not have thrown exception hence no change would have happened.
+
+Interrupted and IsInterrupt
+
+both the above methods are boolean methods, both of these are used to check whether the thread is interrupted or not
+Interrupted - public static boolean interrupted(); as mentioned above this is used to check whether the the thread is interrupted, but if the thread is interrupted,
+it changes the interrupt status to false, what this simply means if thread is interrupted it will kind of remove the interrupt from the thread and thread will start
+working normally.
+
+
+public class A extends Thread {
+public void run() {
+
+try {
+Thread.interrupted(); - this will return true but with this the thread status, that is thread.interrupt which we were using
+would become false hence thread will be executed normally
+for(int i=0;i<5;i++) {
+Thread.currentThread().sleep(1000);
+System.out.println(i+1, Thread.interrupted()); -- will return false for entire loop
+}
+}
+catch(InterruptException e) {
+System.out.println("thread is interrupted");
+}
+}
+public static void main(String[] args) {
+A t1 = new A();
+t1.start;
+t1.interrupt
+}
+}
+
+isInterrupted - public boolean isInterrupted() - it will have no impact on thread status.
+
+public class A extends Thread {
+public void run() {
+
+try {
+Thread.isInterrupted(); - will return true and thread will go in catch i.e will get interrupt
+for(int i=0;i<5;i++) {
+Thread.currentThread().sleep(1000);
+System.out.println(i+1);
+}
+}
+catch(InterruptException e) {
+System.out.println("thread is interrupted");
+}
+}
+public static void main(String[] args) {
+A t1 = new A();
+t1.start;
+t1.interrupt
+}
+}
+
+
+Synchronization
+The process by which we control the accessibility of multiple threads to a particular shared resource.
+Types of Synchronization
+1.Process Synchronization - not supported in java
+2.Thread Synchronization
+  a.Mutual Exclusive
+    |.Synchronized Method
+    ||.Synchronized Block
+    |||.Static Synchronization
+  b.Cooperation (Inter Thread)
+    |.Wait
+    ||.Notify
+    |||.Notify All
+
+Problems if synchronization is not followed - Data Inconsistency, Thread Interference
+Advantages - No Data Inconsistency, No Thread Interference
+Disadvantages - Increases the waiting time period of threads, Performance problems
+
+Why we need synchronization
+
+Suppose two classes
+
+public class BookTicket() {
+int total seats = 10;
+
+
+public void bookTicket(int n) {
+if n < totalSeats;
+System.out.println("Seat Booked");
+totalSeats -= n;
+else
+System.out.println("Seat Not Available");
+}
+}
+
+public class App extends Thread {
+static BookTicket bt();
+int seats;
+
+public void run (){
+bt.bookTicket(seats);
+}
+
+public static void main(String[] args) {
+App t1 = new App();
+App t2 = new App();
+t1.seats = 7;
+t2.seats = 5;
+
+t1.start();
+t2.start();
+
+}
+}
+
+Now as we can see above there are two threads trying to book ticket, but since book ticket resource is unsynchronized, a situation can arise that when the
+book ticket method checks total seats both seats have accessed 10 as total seats but since if one thread would have accessed then there is sure that other
+can't book the tickets as total were 10 and we are trying to book 12.
+
+So in this case we need synchronization.
+How to achive? simply write keyword synchronized in front of the resource like in this case is book ticket method
+
+How this process works
+
+in java every object has two type of lock synchronized and unsynchronized, if lock is unsynchronized, then multiple threads can access it at same time
+but if it is synchronized, only one thread can access it at one time. Once in synchronized one thread has accessed and goes into dead state, the lock becomes
+available for the other thread.
+
+Synchronized Block
+In a method there can be 1000 lines of code, but the part where we need it to be synchronized might be very small, if we synchronize entire method
+it increases waiting time for other thread drastically which is not suitable for a project, to remove it we can use the synchronized block
+the synchronized block will only have the part where synchronization is required and other code which doesn't require synchronization will not be in this
+
+eg
+
+public void bookTicket(int n) {
+
+code
+
+synchronized(this) { -- synchronized block
+if n < totalSeats;
+System.out.println("Seat Booked");
+totalSeats -= n;
+else
+System.out.println("Seat Not Available");
+}
+
+code
+}
+
+Here this is the object reference to the current object, simply meaning the current object(this) is synchronized for this part.
+
+Static Synchronization
+
+Even though the synchronization keyword or block can work fine for 1 object, but suppose we create two object then we can face the same problem as before
+for eg
+
+
+public class BookTicket() {
+int total seats = 10;
+
+
+synchronize public void bookTicket(int n) {
+if n < totalSeats;
+System.out.println("Seat Booked");
+totalSeats -= n;
+else
+System.out.println("Seat Not Available");
+}
+}
+class Thread1 extends Thread {
+BookTicket b;
+int total seats;
+
+Thread1(BookTicket b, int totalSeats){
+this.b = b;
+this.totalSeats = totalSeats;
+}
+public void run() {
+b.bookTicket(totalSeats);
+}
+}
+class Thread2 extends Thread {
+BookTicket b;
+int total seats;
+
+Thread1(BookTicket b, int totalSeats){
+this.b = b;
+this.totalSeats = totalSeats;
+}
+public void run() {
+b.bookTicket(totalSeats);
+}
+}
+public class App{
+
+public static void main(String[] args) {
+
+BookTicket b1 = new BookTicket();
+Thread1 t1 = new Thread1(b1, 10);
+Thread2 t2 = new Thread2(b1, 10);
+
+t1.start();
+t2.start();
+
+BookTicket b2 = new BookTicket();
+Thread3 t3 = new Thread1(b2, 10);
+Thread4 t4 = new Thread2(b2, 10);
+
+t3.start();
+t4.start();
+
+}
+}
+
+In the above situation the synchronize would work fine for first 2 threads, but in the next 2 threads t3 and t4 is where we can face problem.
+To solve this rather than using just synchronize bookTicket() , we have to make method static synchronize bookTicket() and make totalSeats static,
+the concept behind this is with introduction of static synchronize at method level the class will also have synchronized lock, for object the locks
+are still there but now class also has lock so only one instance can use 1 time and it stays consistent for every initialization.
+
+Inter Thread Synchronization
+It is a mechanism in which thread releases the lock and enters in paused state for some other thread to acquire the lock and continue to be executed.
+
+It uses wait to make thread release the lock and the other thread uses notify or notify all to invoke it back, remember these 3 methods are of object class not
+of thread class
+
+Why we need it?
+
+Suppose
+
+class A extends Thread {
+int total = 0;
+public void run{
+for(int i=0;i<10;i++) {
+total += i+1;
+}
+}
+}
+
+class B {
+public static void main(String[] args) {
+A a = new A();
+a.start();
+System.out.println(a.total);
+
+}
+}
+
+Now in the above a problem can happen, we would have wished for thread a to complete and then print total, but main thread would execute print statement first
+giving answer 0. To resolve this we will use wait and notify along with synchronized block
+
+
+class A extends Thread {
+int total = 0;
+synchronized(this){
+public void run{
+for(int i=0;i<10;i++) {
+total += i+1;
+}
+this.notify();
+}
+}
+}
+
+class B {
+public static void main(String[] args) {
+A a = new A();
+a.start();
+Synchronized(a) {
+a.wait();
+}
+System.out.println(a.total);
+
+}
+}
+
+In this first main thread has acquired synchronized block for object a, but when it sees a.wait, it releases lock to a, by synchronized this means in a
+means that thread a has acquired and will calculate total and notify to release lock and main thread will acquire lock again.

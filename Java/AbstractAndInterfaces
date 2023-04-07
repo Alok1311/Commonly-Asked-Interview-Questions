@@ -1,0 +1,91 @@
+Abstract Method
+
+an abstract method is that method which has no body. We need abstract method because suppose
+there is a vehicle class, now vehicle class should have wheels but wheels can be different
+depending upon the vehicle, so abstract methods are used to represent such cases.
+Abstract method can not be present in normal classes, abstract classes can have abstract method.
+
+Abstract Classes
+
+Abstract classes can have simple methods, abstract methods or static methods. Abstract classes
+can not be instantiated. The class extending abstract class must override abstract methods from the
+abstract class, we can also have static methods in abstract class, they can also be called
+by AbstractClass.staticMethod
+
+Abstract has these modifiers -:
+1.private - scope withing abstract class only
+2.public - can have normal method
+3.static - can have static method, the object of child can access it as well as reference of parent abstract class.
+4.abstract - these methods must be overriden, do not have body in abstract class.
+
+Interface
+
+Interfaces are used to achieve abstraction and multiple inheritance. Interfaces can have abstract methods
+and variables.
+
+Interface is used to achieve full abstraction.
+Interface can have methods and variables like any normal class but in interface any method is by default
+public and abstract and any variable is public static and final.
+A class implements interface and must implement all the abstract methods.
+
+An interface can also have the default methods and static methods, the default methods can have body,
+and they may or may not be overriden, a static method can't be overriden and can only be called simply using
+interface reference i.e interfaceName.method(), however static variable can be accessed through
+child class (implementing interface) object.
+
+Overall we can use these modifiers for methods in interface
+
+1.private - only accessible within interface
+2.public - by default all methods are abstract and public
+3.default - default methods can be overriden or can be called through child object but not via interface reference
+4.static - can be accessed only by interface reference, can't be overriden.
+
+
+Multiple inheritance using interfaces
+
+we can use the class to implement two or more interfaces in one time using java,
+
+for eg
+
+interface A {
+void show();
+}
+interface B {
+void getVal();
+}
+
+class Abc implements A,B {
+@override
+void show() {
+}
+
+@override
+void getVal(){
+}
+
+}
+
+
+as we can see from above that we must override all the abstract methods from A and B in class Abc
+
+now a question may arise what if both have same methods, then we can simply have one override method for them both.
+
+there can also be situation like this
+
+interface eg1 {
+    void show();
+}
+interface eg2 {
+    int show();
+}
+class someClass2 implements eg1, eg2 {
+
+    @Override
+    public void show() {
+
+    }
+}
+
+as we can see both method have diff return type, as compiler does not check for return type, then we can't
+solve this, it will result in compile time error. same case can happen for default, but in static since
+we can't call static method using child object in interface so we can have same method names in interface.

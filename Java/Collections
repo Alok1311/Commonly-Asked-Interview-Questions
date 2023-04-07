@@ -49,3 +49,86 @@ and then object array using arrays.copy old object element would be added and th
 new size will be 22.
 
 When an array list element is removed then space created by removal of that element has to be filled, so this is done by shifting elements to the left.
+
+A question can be asked that whether
+
+ArrayList<Integer> a = new ArrayList<>();
+for(int i=0;i<100000;i++) {
+a.add(i);
+}
+
+ArrayList<Integer> a = new ArrayList<>(100000);
+for(int i=0;i<100000;i++) {
+a.add(i);
+}
+
+which one takes more time
+
+1st one takes more time as grow method will be repeatedly called due to which new array will be repeatedly created.
+
+can we modify collection returned from Arrays.asList("a", "b");
+suppose List<String> l = Arrays.asList("a", "b"); // this will give java.lang.unsupported exception as this is unmodifiable collection
+to correct this use
+List<String> l = new LinkedList<>(Arrays.asList("a", "b"));
+
+Fail Fast and Fail Safe Iterators
+
+These are two types of iterators java provides
+
+Fail Fast = will abort the operation as soon as error is reported
+Fail Safe = will not abort the operation on seeing error, will rather try to hide the error
+
+The Concurrent modification in Java is to modify an object concurrently while another task is running over it.
+In simple terms, concurrent modification is the process of modifying objects while another thread is running over them.
+It will change the structure of the data collection, either by removing, adding, or updating the value of the elements in
+the collection.
+
+eg
+Fail Fast
+      List<Integer> a = new ArrayList<>();
+        a.add(2);
+        a.add(3);
+
+        for(int i : a) {
+            a.add(2);
+        }
+
+      Concurrent modification exception will be thrown in above
+
+
+eg
+
+Fail Safe
+
+  List<Integer> a = new ArrayList<>();
+        a.add(2);
+        a.add(3);
+
+        Iterator<Integer> it = a.iterator();
+
+
+        while (it.hasNext()) {
+            Integer i = it.next();
+
+            if(i == 3) {
+                it.remove();
+            }
+        }
+
+  In above no exception would be thrown and 3 would be removed
+
+  suppose we add in list in above situation then again it would be concurrent modification error, to resolve this create a new copyOnWrite arrayList and then
+  add all into that and then add in it
+
+  Most collection from java.util are fail-fast where as most collection from java.concurrent are fail-safe
+
+  JWT Token
+
+  whenever we hit our request on form, our request will come to UsernameOrPasswordAuthenticationFilter and after this attempt authentication will be called
+  and here method will obtain username and password from form, from here UsernameAndPasswordAuthenticationToken of authentication interface will create a
+  authentication object based on username and password, authenticationManager will further call the authenticate method for the particular authentication
+  object. After this in the authenticationManager.authenticate, the role of this would be to get the appropriate authentication provider,
+  after this it will call the provider.authenticate, for eg it can be AbstractUserDetailAuthenticationProvider, from here we will check for
+  the authentication, in here daoauthentication provider will get called which will load the username, after that back in AbstractUserDetailAuthenticationProvider,
+
+

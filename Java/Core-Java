@@ -12,7 +12,8 @@ JAVA IS COMPLETELY SECURE, AS JAVA DOES NOT USES EXTERNAL POINTER AND USES BYTEC
 JVM
 
 JAVA VIRTUAL MACHINE ALLOWS THE COMPUTER TO RUN THE PROGRAM, THE JVM ACTS LIKE A RUNTIME ENGINE WHICH CALLS THE MAIN METHOD
-PRESENT IN JAVA CODE. THE JAVA CODE IS COMPILED BY THE JVM TO BE A BYTECODE.
+PRESENT IN JAVA CODE. THE JAVA CODE IS COMPILED BY THE COMPILER TO TURN INTO BYTECODE WHICH IS THEN CONVERTED INTO MACHINE LANGUAGE
+BY JVM WHICH CONSIST OF INTERPRETER AND JIT COMPILER.
 
 JRE
 
@@ -113,6 +114,7 @@ WHEN ONLY PARAMETERIZED CONSTRUCTOR IS THERE, NO DEFAULT CONSTRUCTOR IS INSTANTI
 12. THE STATIC VARIABLE IS COMMON TO ALL THE OBJECT, THE COMPANY NAME OF EMPLOYEES, COLLEGE NAME OF STUDENTS, ETC.
 STATIC VARIABLE GETS MEMORY ONLY ONCE IN THE CLASS AREA AT THE TIME OF CLASS LOADING. USING A STATIC VARIABLE MAKES
 YOUR PROGRAM MORE MEMORY EFFICIENT (IT SAVES MEMORY). STATIC VARIABLE BELONGS TO THE CLASS RATHER THAN THE OBJECT.
+Static variables are only initialized once, only one Object will be created.
 
 STATIC METHODS, COMMON TO CLASS, NO NEED TO CREATE OBJECT WHILE CALLING THE METHOD IF CALLING IN THE SAME CLASS.
 
@@ -148,7 +150,7 @@ THIS() CAN BE USED TO INVOKE THE CURRENT CLASS CONSTRUCTOR.
 THIS CAN BE PASSED AS AN ARGUMENT IN THE METHOD CALL.
 THIS CAN BE PASSED AS AN ARGUMENT IN THE CONSTRUCTOR CALL.
 THIS CAN BE USED TO RETURN THE CURRENT CLASS INSTANCE FROM THE METHOD.
-THIS CAN ALSO BE USED TO REFER STATIC VAIRABLE
+THIS CAN ALSO BE USED TO REFER STATIC VARIABLE
 
 REFERENCE VARIABLE CANNOT BE ASSIGNED ANY VALUE
 
@@ -381,7 +383,7 @@ IN ABSTRACT CLASS YOU CAN DEFINE A METHOD, THE ABSTRACT METHODS ARE DEFINED WITH
 
 ABSTRACT METHODS(NORMAL IN INTERFACE) IN BOTH MUST BE IMPLEMENTED
 
-ABSTRACT CLASSES ARE EXTENDED WHEREAS INTERFACES ARE INPLEMENTED
+ABSTRACT CLASSES ARE EXTENDED WHEREAS INTERFACES ARE IMPLEMENTED
 
 IMPLEMENTS MEANS YOU ARE USING THE ELEMENTS OF A JAVA INTERFACE IN YOUR CLASS. EXTENDS MEANS THAT YOU ARE CREATING A
 SUBCLASS OF THE BASE CLASS YOU ARE EXTENDING.
@@ -412,6 +414,13 @@ this.college=college;
 }
 }
 
+What do you mean by encapsulation?
+Encapsulation is a way to restrict the direct access to some components of an object, so users cannot access state values for
+all of the variables of a particular object. Encapsulation can be used to hide both data members and data functions or methods
+associated with an instantiated class or object.
+
+We can also say that encapsulation is building of class via the variables and methods working together.
+
 ADVANTAGES OF ENCAPSULATION:
 DATA CAN BE MADE READ/WRITE ONLY, DATA HIDING CAN BE DONE, MODIFY LOGIC WHILE STORING DATA SUCH AS USING LOGIC IN SETTER
 , EASY TO UNIT TEST.
@@ -425,7 +434,11 @@ NAMING COLLISION. THE PACKAGES IN JAVA CAN BE CATEGORIZED INTO TWO FORMS, INBUIL
 29. BY STATIC IMPORT, WE CAN ACCESS THE STATIC MEMBERS OF A CLASS DIRECTLY, AND THERE IS NO TO QUALIFY IT WITH THE CLASS NAME.
 
 30. CHECKED EXCEPTION: CHECKED EXCEPTIONS ARE THE ONE WHICH ARE CHECKED AT COMPILE-TIME. FOR EXAMPLE, SQLEXCEPTION,
-CLASSNOTFOUNDEXCEPTION, ETC.
+CLASSNOTFOUNDEXCEPTION, ETC. Handled with throws
+For example, consider the following Java program that opens the file at location “C:\test\a.txt” and prints the first three lines of it.
+The program doesn’t compile, because the function main() uses FileReader() and FileReader() throws a checked exception FileNotFoundException.
+It also uses readLine() and close() methods, and these methods also throw checked exception IOException
+
 UNCHECKED EXCEPTION: UNCHECKED EXCEPTIONS ARE THE ONE WHICH ARE HANDLED AT RUNTIME BECAUSE THEY CAN NOT BE CHECKED
 AT COMPILE-TIME. FOR EXAMPLE, ARITHMATICEXCEPTION, NULLPOINTEREXCEPTION, ARRAYINDEXOUTOFBOUNDSEXCEPTION, ETC.
 ERROR: ERROR CAUSE THE PROGRAM TO EXIT SINCE THEY ARE NOT RECOVERABLE. FOR EXAMPLE, OUTOFMEMORYERROR, ASSERTIONERROR, ETC.
@@ -584,7 +597,7 @@ CONNECTION IS MADE THE SERVER CAN REFERENCE THE SOCKET OBJECT FROM CLIENT
 
 REFLECTION
 
-MODIFYING BEHAVIOUR OF A CLASS AT RUNTIME, PROVIDES VARIOUS MEHTODS THAT CAN BE USED TO GET METADATA
+MODIFYING BEHAVIOUR OF A CLASS AT RUNTIME, PROVIDES VARIOUS METHODS THAT CAN BE USED TO GET METADATA
 
 38. THE NEWINSTANCE() METHOD OF THE CLASS CLASS IS USED TO INVOKE THE CONSTRUCTOR AT RUNTIME. IN THIS PROGRAM,
 THE INSTANCE OF THE SIMPLE CLASS IS CREATED.
@@ -696,3 +709,26 @@ Can we overload two methods with same name same parameters but different return 
 
 No we cannot because during the time of compilation, compiler only considers name and parameters and not the return type
 hence it throws compile time error.
+
+Are there 8 primitive data types in Java?
+Primitive data types - includes byte , short , int , long , float , double , boolean and char.
+
+Why are wrapper classes needed in Java? Wrapper classes are fundamental in Java because they help a Java program be completely object-oriented.
+The primitive data types in java are not objects, by default. They need to be converted into objects using wrapper classes.
+
+Advantages of using a switch statement over a traditional if-else cascade. While it is true that the same functionalities of the switch statement can
+also be implemented using an if-else cascade, the switch statement allows us in certain situations to write a more clear, compact and readable code.
+
+Exception Tree in Java
+
+                                            Object
+                                               |
+                                            Throwable
+                                               |
+                             Error                              Exception
+                                |
+                         Syntax Error, RunTimeError, Logical Error
+
+
+                        Checked Exceptions = SQLException, IO Exception, Broken Barrier Exception
+                        Unchecked Exceptions = Null Pointer Exception, Arithmetic Exception

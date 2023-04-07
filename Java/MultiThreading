@@ -694,3 +694,10 @@ System.out.println(a.total);
 
 In this first main thread has acquired synchronized block for object a, but when it sees a.wait, it releases lock to a, by synchronized this means in a
 means that thread a has acquired and will calculate total and notify to release lock and main thread will acquire lock again.
+
+THREADSAFE
+
+As we know Java has a feature, Multithreading, which is a process of running multiple threads simultaneously. When multiple
+threads are working on the same data, and the value of our data is changing(meaning it is mutable), that scenario is not
+thread-safe and we will get inconsistent results. When a thread is already working on an object and preventing another
+thread on working on the same object, this process is called Thread-Safety.

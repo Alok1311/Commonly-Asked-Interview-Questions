@@ -89,3 +89,64 @@ class someClass2 implements eg1, eg2 {
 as we can see both method have diff return type, as compiler does not check for return type, then we can't
 solve this, it will result in compile time error. same case can happen for default, but in static since
 we can't call static method using child object in interface so we can have same method names in interface.
+
+one interface can extend other interface, for eg b interface extends a interface, now the child class implementing b will
+need to override abstract methods from both a and b.
+
+
+there can also be another situation in interface
+
+interface test1 {
+    default void run() {
+        System.out.println("Test1");
+    }
+}
+interface test2 {
+    default void run() {
+        System.out.println("Test2");
+    }
+}
+
+
+public class DefaultInterfaceTest implements test1, test2{
+    @Override
+    public void run() {
+        test2.super.run();
+    }
+
+    public static void main(String[] args) {
+        DefaultInterfaceTest defaultInterfaceTest = new DefaultInterfaceTest();
+        defaultInterfaceTest.run();
+    }
+}
+
+in above there are two default method with same name so we can either chose to have one particular interface
+default value like above or have some of our custom value;
+
+another situation can happen
+
+suppose
+interface test1 {
+    default void run() {
+        System.out.println("Test1");
+    }
+}
+
+class test 2 {
+    public void run() {
+      System.out.println("Test2");
+    }
+}
+
+
+public class DefaultInterfaceTest extends test2, implements test1 {
+
+    public static void main(String[] args) {
+        DefaultInterfaceTest defaultInterfaceTest = new DefaultInterfaceTest();
+        defaultInterfaceTest.run();
+        // in this case test2 will be called, how ever if it was empty in test2 like void run(), then the same
+        situation as above would have arrived as priority would be same i.e default, so in this case
+        also we will have to override, ew can refer like above for interface test1.super.run or
+        super.run() for test2
+    }
+}

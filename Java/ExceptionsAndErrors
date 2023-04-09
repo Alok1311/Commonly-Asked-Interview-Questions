@@ -1,0 +1,76 @@
+CHECKED EXCEPTION: CHECKED EXCEPTIONS ARE THE ONE WHICH ARE CHECKED AT COMPILE-TIME. FOR EXAMPLE, SQLEXCEPTION,
+CLASSNOTFOUNDEXCEPTION, ETC. Handled with throws
+For example, consider the following Java program that opens the file at location “C:\test\a.txt” and prints the
+first three lines of it.The program doesn’t compile, because the function main() uses FileReader() and FileReader()
+throws exception FileNotFoundException. It also uses readLine() and close() methods, and these methods
+also throw checked exception IOException
+
+UNCHECKED EXCEPTION: UNCHECKED EXCEPTIONS ARE THE ONE WHICH ARE HANDLED AT RUNTIME BECAUSE THEY CAN NOT BE CHECKED
+AT COMPILE-TIME. FOR EXAMPLE, ARITHMATICEXCEPTION, NULLPOINTEREXCEPTION, ARRAYINDEXOUTOFBOUNDSEXCEPTION, ETC.
+
+ERROR: ERROR CAUSE THE PROGRAM TO EXIT SINCE THEY ARE NOT RECOVERABLE. FOR EXAMPLE, OUTOFMEMORYERROR, ASSERTIONERROR, ETC.
+
+
+Exception vs Error
+
+Exception occurs because of program but error occurs because of lack of resources.
+Exceptions are recoverable but errors are not.
+Exceptions are of compile time and run time also called as checked or unchecked but errors are only of
+one type i.e runtime exception
+
+
+
+
+Exception Tree in Java
+
+                                            Object
+                                               |
+                                            Throwable
+                                               |
+                             Error                              Exception
+                                |
+                         Syntax Error, RunTimeError, Logical Error
+
+
+                        Checked Exceptions = SQLException, IO Exception, Broken Barrier Exception
+                        Unchecked Exceptions = Null Pointer Exception, Arithmetic Exception
+
+                        Errors = Virtual Machine Error(Types StackOverflow
+                        Out of Memory, Assertion Error, Linkage Error(Class Not Found)
+Error class is java.type.lang.error
+Throw vs Throws
+
+Throw is used to explicitly throw an exception where as throws is used to declare exception
+Checked exception can not be propogated using throw where as it can be via throws.
+Throw is used within method whereas throws with the method
+You can only throw one exception where as you can use throws to declare more than one exceptions.
+
+Checked Exception
+Checked Exceptions
+These are the exceptions that are checked at compile time. If some code within a method throws a checked exception,
+then the method must either handle the exception or it must specify the exception using the throws keyword.
+In checked exception,
+
+Unchecked Exceptions
+These are the exceptions that are not checked at compile time.
+to throw an exception we simply use throw new IllegalArgumentException(eg)
+@ControllerAdvice is a specialized form of the spring's stereotype annotation which allows handling exceptions
+across the whole application in one global handling component.
+@ExceptionHandler - method level annotation, used to specify the method
+
+
+Chained exception allows you to relate one exception with another exception
+Methods of throwable class which supports chained exception
+getCause() - return actual cause
+initCause() - sets cause for calling exception
+
+eg BusinessException bE = new BusinessException("Some Error")
+bE.initCause(new PermissionDeniedException("Permission Error"))
+
+now when we do exception.getMessage = Some Error will be printed
+but when we do exception.getCause = Permission Error will be printed
+
+
+Very Important Point
+All Exceptions occur at run time, compile time exceptions are simply those where compiler expects an exception
+can occur

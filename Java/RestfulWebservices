@@ -13,8 +13,13 @@ whereas the REST client consumes (accesses and modifies) these resources. Every 
 means of a URI.
 
 Uniform Resource Identifier is the full form of URI which is used for identifying each resource of the REST architecture.
+eg - https://examplesite.com/page/example
+
 Uniform Resource Name identifies the resource by means of a name that is both unique and persistent.
+eg - examplesite.com/page/example
+
 Uniform Resource Locator has the information regarding fetching of a resource from its location.
+eg - https://examplesite.com/page/example
 
 Features
 Based on client server model
@@ -37,7 +42,7 @@ Delete
 Patch
 Options(Returns list of supported operation)
 
-What is difference between put and PATCH in rest?
+What is difference between PUT and PATCH in rest?
 PUT means replace the entire resource with given data (so null out fields if they are not provided in therequest),
 while PATCH means replace only specified fields.
 

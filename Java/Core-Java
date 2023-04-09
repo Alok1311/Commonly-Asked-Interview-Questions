@@ -732,3 +732,41 @@ Exception Tree in Java
 
                         Checked Exceptions = SQLException, IO Exception, Broken Barrier Exception
                         Unchecked Exceptions = Null Pointer Exception, Arithmetic Exception
+
+Error class is java.type.lang.error
+Throw vs Throws
+
+Throw is used to explicitly throw an exception where as throws is used to declare exception
+Checked exception can not be propogated using throw where as it can be via throws.
+Throw is used within method whereas throws with the method
+You can only throw one exception where as you can use throws to declare more than one exceptions.
+
+Java do not use pointers because using pointer the memory area can be directly accessed, which is a security issue.
+pointers need so memory spaces at the runtime. to reduce the usage of memory spaces java does not support pointers.
+and also pointers take more time at the run time.
+
+
+default method is found in interface
+
+System.out = output
+System.err = error output
+System.in = input
+
+An enum is a special "class" that represents a group of constants (unchangeable variables, like final variables).
+To create an enum, use the enum keyword (instead of class or interface), and separate the constants with a comma.
+Note that they should be in uppercase letters:
+
+Data abstraction is the process of hiding certain details and showing only essential information to the user.
+Abstraction can be achieved with either abstract classes or interfaces.
+
+Encapsulation in Java refers to integrating data (variables) and code (methods) into a single unit.
+In encapsulation, a class's variables are hidden from other classes and can only be accessed by the methods of
+the class in which they are found.
+
+In Java, polymorphism refers to the ability of a class to provide different implementations of a method,
+depending on the type of object that is passed to the method. To put it simply, polymorphism in Java allows
+us to perform the same action in many different ways.
+
+Inheritance in Java is a mechanism in which one object acquires all the properties and behaviors of a parent object.
+
+There are two types of methods in Java: Predefined Method. User-defined Method.

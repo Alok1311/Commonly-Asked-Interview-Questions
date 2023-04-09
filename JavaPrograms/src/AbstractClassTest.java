@@ -8,7 +8,6 @@ abstract class Vehicle {
         return 4;
     }
 
-
     static int sixWheeler() {
         return 6;
     }

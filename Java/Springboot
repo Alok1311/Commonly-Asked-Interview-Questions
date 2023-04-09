@@ -68,6 +68,7 @@ IS PUSHED TO PRODUCTION WE CAN CHECK MONITOR OUR APPLICATION USING THESE HTTP EN
  SPRING @CONFIGURATION ANNOTATION IS PART OF THE SPRING CORE FRAMEWORK. SPRING CONFIGURATION ANNOTATION INDICATES
  THAT THE CLASS HAS @BEAN DEFINITION METHODS.
  WHILE DEVELOPING AN APPLICATION, WE NEED TO TELL THE SPRING FRAMEWORK TO LOOK FOR SPRING-MANAGED COMPONENTS.
+
  @COMPONENTSCAN ENABLES SPRING TO SCAN FOR THINGS LIKE CONFIGURATIONS, CONTROLLERS, SERVICES, AND OTHER COMPONENTS WE DEFINE.
 
  @CONTROLLER MAP OF THE MODEL OBJECT TO VIEW OR TEMPLATE AND MAKE IT HUMAN READABLE BUT @RESTCONTROLLER SIMPLY
@@ -99,3 +100,22 @@ IS PUSHED TO PRODUCTION WE CAN CHECK MONITOR OUR APPLICATION USING THESE HTTP EN
  What is the difference between @bean and @configuration?
  @Configuration - It is like beans. xml but Java-based bean configuration. It means class annotated with this annotation is the place where beans are
  configured and will be a candidate for auto-detection. In this class, methods are annotated with @Bean which return an object of the class.
+
+ Bean Lifecycle
+
+ Container started -> bean instantiated -> @post construct annotation with method(eg db connection on) ->
+ further methods -> @predestroy annotation with method(db connection close)
+
+ ApplicationContext represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the aforementioned beans.
+ The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata.
+
+ Spring provides further stereotype annotations: @Component, @Service, and @Controller. @Component is a generic stereotype for any Spring-managed component.
+ @Repository, @Service, and @Controller are specializations of @Component for more specific use cases (in the persistence, service, and presentation layers,
+ respectively). Therefore, you can annotate your component classes with @Component, but,
+ by annotating them with @Repository, @Service, or @Controller instead, your classes are more properly suited for processing by tools or associating with aspects.
+
+ For example, these stereotype annotations make ideal targets for pointcuts. @Repository, @Service, and @Controller can also carry additional
+ semantics in future releases of the Spring Framework. Thus, if you are choosing between using @Component or @Service for your service layer,
+ @Service is clearly the better choice. Similarly, as stated earlier, @Repository is already supported as a marker for automatic exception
+ translation in your persistence layer.
+

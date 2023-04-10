@@ -162,3 +162,12 @@ there would be many servers.
 
 The responsibility of each layer is different, but there are a few common aspects that apply to all layers are Logging, Security, validation, caching, etc.
 These common aspects are called cross-cutting concerns. If we implement these concerns in each layer separately, the code becomes more difficult to maintain.
+
+JWT Token
+
+whenever we hit our request on form, our request will come to UsernameOrPasswordAuthenticationFilter and after this attempt authentication will be called
+and here method will obtain username and password from form, from here UsernameAndPasswordAuthenticationToken of authentication interface will create a
+authentication object based on username and password, authenticationManager will further call the authenticate method for the particular authentication
+object. After this in the authenticationManager.authenticate, the role of this would be to get the appropriate authentication provider,
+after this it will call the provider.authenticate, for eg it can be AbstractUserDetailAuthenticationProvider, from here we will check for
+the authentication, in here daoauthentication provider will get called which will load the username, after that back in AbstractUserDetailAuthenticationProvider,

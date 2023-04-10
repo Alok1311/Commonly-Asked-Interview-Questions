@@ -60,3 +60,27 @@ Integer max = Stream.of(1,24,12,15,2).max(Comparator.comparing(Integer :: valueO
 Stream.distinct method is used to get distinct from a stream
 
 List<Integer> li = someList.Stream().distinct().collect(Collectors.toList());
+
+stream.map() vs stream.flatmap()
+
+we use stream.map() normally when we have to get values or collect values from a list
+suppose we have to get all cities from List<Employees> then we can simply use
+list.stream.map(e -> e.getCity()).Collect(Collectors.toList())
+
+but now suppose we have List<Employee> but cities are like List<String> in Employee class and from here
+we have to collect all the cities and just for this eg suppose we have to collect only one city that
+means we have to flatten the inside of the list to which is List<String>
+
+list.stream.flatMap(e -> e.getCities().stream).collect(Collectors.toSet()); // for getting all the cities
+
+so the function in map is used to return a single value but function in flat map is used to return a stream of value
+flatmap is combination of map and flat operation
+map is used for transformation only but flatmap is used for both transformation and flattening.
+
+
+HashMap vs TreeMap vs LinkedHashMap
+
+HashMap will store in any order
+TreeMap will store in ascending key order
+
+LinkedHashMap will store in insertion order

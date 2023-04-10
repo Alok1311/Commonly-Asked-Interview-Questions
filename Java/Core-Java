@@ -770,3 +770,6 @@ us to perform the same action in many different ways.
 Inheritance in Java is a mechanism in which one object acquires all the properties and behaviors of a parent object.
 
 There are two types of methods in Java: Predefined Method. User-defined Method.
+
+Object - real time entity of class
+Class - blueprint which has all the objects

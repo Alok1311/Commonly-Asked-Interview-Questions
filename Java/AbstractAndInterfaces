@@ -150,3 +150,13 @@ public class DefaultInterfaceTest extends test2, implements test1 {
         super.run() for test2
     }
 }
+
+
+Marker Interface
+It is an empty interface (no field or methods). Examples of marker interface are Serializable,
+Cloneable and Remote interface. All these interfaces are empty interfaces.
+
+Serialization - conversion of java object to stream of bytes,
+classes which perform serialization implements serializable, now with the instanceOfSerializable, we can check
+if it is serializable and hence perform serialization
+Static fields can not be serialized

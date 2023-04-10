@@ -122,13 +122,39 @@ Fail Safe
 
   Most collection from java.util are fail-fast where as most collection from java.concurrent are fail-safe
 
-  JWT Token
+ HashMap vs HashTable vs Synchronized HashMap vs Concurrent HashMap
 
-  whenever we hit our request on form, our request will come to UsernameOrPasswordAuthenticationFilter and after this attempt authentication will be called
-  and here method will obtain username and password from form, from here UsernameAndPasswordAuthenticationToken of authentication interface will create a
-  authentication object based on username and password, authenticationManager will further call the authenticate method for the particular authentication
-  object. After this in the authenticationManager.authenticate, the role of this would be to get the appropriate authentication provider,
-  after this it will call the provider.authenticate, for eg it can be AbstractUserDetailAuthenticationProvider, from here we will check for
-  the authentication, in here daoauthentication provider will get called which will load the username, after that back in AbstractUserDetailAuthenticationProvider,
+ HashMap
+ It is not synchronized
+ No Lock
+ Multiple Threads work
+ One null key, n no. of null values
+ Fail Fast
+ Should be used only in single threaded environment
+
+ HashTable
+ All operations are synchronized
+ Object Lock
+ Single Thread works
+ Null keys not allowed
+ Fail Safe
+ Should not be used anymore
+
+ Synchronized HashMap
+ All operations are synchronized
+ Object level lock
+ Single thread works
+ One null key, n no. of null values
+ Fail Fast
+ Can be used only in multi threaded environment
+
+ Concurrent HashMap
+ Only write operations are Synchronized
+ Segment Lock - how this works? lock will only be while updating and even in this case it will be bucket level lock
+ so if a thread is present in bucket and updating it will lock and if it is empty thread can simply acquire the lock
+ 16 threads perform update and n threads read
+ Null Keys not allowed
+ Fail Safe
+ Should be used in multithreaded environment
 
 

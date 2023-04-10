@@ -79,4 +79,85 @@ INSERT or UPDATE.
 
 Does JavaScript support thread?
 JavaScript is a single-threaded language because while running code on a single thread, it can be really easy to
-implement as we don't have to deal with the complicated scenarios that arise in the multi-threaded environment like a deadlock. Since JavaScript is a single-threaded language, it is synchronous in nature.
+implement as we don't have to deal with the complicated scenarios that arise in the multi-threaded environment like
+a deadlock. Since JavaScript is a single-threaded language, it is synchronous in nature.
+
+Important - in below syntax of rownum is false
+it should be ROW_NUMBER() OVER(ORDER BY column_name)
+
+SQL Questions
+
+1.Select 2nd highest salary from list of employees
+
+ans - Select max(sal) from Employee where sal not in(Select max(sal) from Employee);
+
+2.Select max Salary from every department
+
+ans - Select max(sal), deptNo from emp groupBy deptNo //remember in groupBy only 1st condition(like min or max)
+and column which is groupBy should be there.
+
+3.Count total employees from every department
+
+ans - Select count(*), deptNo from emp groupBy deptNo.
+
+4.Display empNo, sal, eName along with rowNum order by salary
+
+ans - Select rownum, empNo, sal, eName from emp order by sal
+
+5.Display above for alternate row nums
+
+ans - Select * from (select rownum rn, empNo, sal, eName from emp order by rn) where mod(rn,2) != 0
+
+6. Display only duplicate values
+
+ans - Select ename, count(*) from emp groupBy ename having count(*) > 1 // can not use where when we use groupBy
+
+7. Display whose name start with m, ends with n, having m, does not have m
+
+starts with m, ans where ename like 'm%'
+ends with n, '%n'
+having m , '%m%'
+not has m, ans where ename not like 'm%'
+
+8. Display names with
+with 4 letter - where ename like '____'
+with 2nd letter as L - where ename like '_l%'
+with 4th letter as M - where enamle like '___m%'
+names and hire dates for employees joined in dec - where hiredate like '%dec%'
+whose name has exactly two ls - ename like '%ll%'
+name starts with j and ends with s - ename like 'j%s'
+
+9. Display 4th row in table
+
+select * from emp where rownum >= 4 minus select * from emp where rownum >= 3
+
+or
+
+select * from (select rownum r, ename, sal from emp) where r = 6
+
+or
+
+select * from (select rownum r, emp.* from emp) where r in(2,3,6)
+
+10. Inner Join
+select emp, sal, dept.deptno from emp, dept where emp.deptno = dept.dept.no
+
+11. Self Join
+select e1.ename "employees", e2.ename "manager" from emp e1, emp e2 where e2.empno = e1.mgr
+12. Left Join
+select ename, sal from emp left join dep on emp.deptno = dep.deptno (will return null on column with no match
+on dep)
+13.Right Join
+vice versa of left
+14.Full Join - Full Join is combination of right and left, if a value doesn't match it will have null
+15.Cross Join - select ename, d.deptno, sal, dname, loc from emp e cross join dept d where d.deptno = '1';
+now in this type of join all the matching result from table 1 will multiply with every matching result from table 2
+we can further have criteria like using where to only display filetered results
+
+16.Get last two rows
+
+SELECT * from(select ROW_NUMBER() OVER(ORDER BY patient_id) AS num_row, first_name, last_name from patients)
+where num_row <= (select count(*)-1 from patients);
+or
+SELECT * from(select ROW_NUMBER() OVER(ORDER BY patient_id) AS num_row,* from patients)
+where num_row <= (select count(*)-1 from patients);

@@ -21,3 +21,5 @@ Only till Java5.
 No we can not, it will throw rte.
 11.Can we change return type of main method?
 No, it will throw rte.
+12.If we make a program with main having (int args), then it will not have compile time error, but will not run as
+jvm will look for main with (String[] args)

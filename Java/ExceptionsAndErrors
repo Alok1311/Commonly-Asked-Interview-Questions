@@ -74,3 +74,79 @@ but when we do exception.getCause = Permission Error will be printed
 Very Important Point
 All Exceptions occur at run time, compile time exceptions are simply those where compiler expects an exception
 can occur
+
+How Process of Exception Occurs
+
+class Main {
+public static void main(String[] args) {
+int a = 100/0;
+}
+}
+
+in the above program main will run 100/0 which, with this main will create object of arithmeticException which will have
+exception name, description(msg) and stack trace, now jvm will check if main is handling the exception in any way, since in
+this case it is not hence main will pass this object to default exception handler which will print the exception and program will
+be abnormally terminated.
+
+class Main {
+public void ex() {
+int a = 100/0;
+}
+public static void main(String[] args) {
+Main m = new Main();
+m.ex();
+}
+}
+
+The difference here from above is that in this ex method will create exception object and jvm will first check method if it handles
+the ex and then main and then upon seeing that will pass the exception object to default exception handler which will then print
+exception and program will be terminated abnormally
+
+Throw
+
+Throw is used by the programmer to throw an exception in a certain situation, it is advised to always
+throw user defined exception
+
+class CustomException extends RuntimeException {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+public class ThrowException {
+    public static void main(String[] args) {
+        int age = 17;
+        if(age < 18) {
+            throw new CustomException("Age is less than 18");
+        }
+    }
+}
+
+
+above we can see that custom exception is a type of runtime exception, we should only
+throw unchecked exception usually, but if we have to throw checked exception then extend only ExceptionClass
+
+Throws is used to identify that the method can throw a checked exception and they are telling the method calling
+them should catch this exception
+
+for eg
+
+public class ThrowsTest {
+public void throwTest() throws FileNotFoundException {
+    FileInputStream fileInputStream = new FileInputStream(new File("notes.txt"));
+}
+public static void main(String[] args) {
+    ThrowsTest throwsTest = new ThrowsTest();
+    try {
+        throwsTest.throwTest();
+    }
+    catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
+}
+}
+
+in this throwTest method throws a checked exception so since main is calling it, it should handle this
+exception so that our program don't terminate abnormally.
+
+even though we could have written throws with main too, it is not good practice to do so as in that case
+jvm would have terminated program abnormally passing the object to default exception handler.

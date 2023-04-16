@@ -1,0 +1,145 @@
+What is ORM
+Object Relational Mapping (ORM) is a functionality which is used to develop and maintain a relationship
+between an object and relational database by mapping an object state to database column. It is capable to
+handle various database operations easily such as inserting, updating, deleting etc.
+
+Types of Mapping
+Following are the various ORM mappings: -
+
+One-to-one - This association is represented by @OneToOne annotation. Here, instance of each entity is related to a
+single instance of another entity.
+
+One-to-many - This association is represented by @OneToMany annotation. In this relationship, an instance of one
+entity can be related to more than one instance of another entity.
+
+Many-to-one - This mapping is defined by @ManyToOne annotation. In this relationship, multiple instances of an
+entity can be related to single instance of another entity.
+
+Many-to-many - This association is represented by @ManyToMany annotation. Here, multiple instances of an entity
+can be related to multiple instances of another entity. In this mapping, any side can be the owing side.
+
+The core interfaces of Hibernate framework are:
+
+Configuration
+SessionFactory
+Session
+Query
+Criteria
+Transaction
+
+There are 3 states of the object (instance) in hibernate.
+
+Transient: The object is in a transient state if it is just created but has no primary key (identifier) and not
+associated with a session.
+Persistent: The object is in a persistent state if a session is open, and you just saved the instance in the
+database or retrieved the instance from the database.
+Detached: The object is in a detached state if a session is closed. After detached state, the object comes
+to persistent state if you call lock() or update() method.
+
+SessionFactory factory = cfg.buildSessionFactory();
+Session session1 = factory.openSession();
+
+Employee e1 = (Employee) session1.get(Employee.class, Integer.valueOf(101));//passing id of employee
+session1.close();
+
+Spring Data is a high-level Spring Source project. Its purpose is to unify and easy access to the different
+kinds of persistence stores, both relational database systems, and NoSQL data stores.
+Spring Data JPA adds a layer on the top of JPA. It means, Spring Data JPA uses all features defined by JPA
+specification, especially the entity, association mappings, and JPA's query capabilities. Spring Data JPA adds
+its own features such as the no-code implementation of the repository pattern and the creation of database
+queries from the method name
+
+There are three main features of Spring Data JPA are as follows:
+
+No-code repository: It is the most popular persistence-related pattern. It enables us to implement
+our business code on a higher abstraction level.
+Reduced boilerplate code: It provides the default implementation for each method by its repository
+interfaces. It means that there is no longer need to implement read and write operations.
+Generated Queries: Another feature of Spring Data JPA is the generation of database queries
+based on the method name. If the query is not too complex, we need to define a method on our
+repository interface with the name that starts with findBy. After defining the method,
+Spring parses the method name and creates a query for it. For example:
+
+public interface EmployeeRepository extends CrudRepository<Employee, Long>
+{
+Employee findByName(String name);
+}
+
+JPA allows us to map application classes to table in the database.
+
+Entity Manager: Once we define the mapping, it handles all the interactions with the database.
+JPQL (Java Persistence Query Language): It provides a way to write queries to execute searches
+against entities. It is different from the SQL queries. JPQL queries already understand the mapping
+that is defined between entities. We can add additional conditions if required.
+Criteria API: It defines a Java-based API to execute searches against the database.
+
+Data Persistence is a means for an application to persist and retrieve information from a non-volatile
+storage system. The Java™ Persistence API (JPA) provides a mechanism for managing persistence and
+object-relational mapping and functions since the EJB 3.0 specifications.
+
+JPQL VS SQL
+The main difference between SQL and JPQL is that SQL works with relational database tables,
+records and fields, whereas JPQL works with Java classes and objects. For example, a
+JPQL query can retrieve and return entity objects rather than just field values from
+database tables, as with SQL.
+
+SpringBoot JPA repository methods are made up of either entity manager or Typed Queries
+
+What is EntityManager used for?
+The EntityManager API is used to create and remove persistent entity instances, to find entities by
+their primary key, and to query over entities. The set of entities that can be managed by a
+given EntityManager instance is defined by a persistence unit.
+
+Difference between lazy loading and eager loading
+
+suppose there is an object classroom which has list of student object, then in lazy loading on fetching
+from database it will only load when we use getter for student but in eager it has already loaded
+
+
+Mappings in Hibernate
+@OneToOne
+
+eg class Student {
+Laptop laptop;
+}
+class Laptop {
+int id;
+String name;
+}
+
+result of above will be
+
+Student class will have laptopId along with other fields and laptop will have it's id and name
+
+@OneToMany and @ManyToOne
+
+@OneToMany
+
+eg class Student {
+@OneToMany(mapped by "stud")
+List<Laptop> laptops
+}
+
+eg class Laptop {
+@ManyToOne
+Student stud
+}
+
+as we can see above now the laptop will have student id as well, had we not written mapped by then there
+would have been another table student_laptop
+
+@ManyToMany
+
+eg class Student {
+@ManyToMany(mapped by "stud")
+List<Laptop> laptops
+}
+
+eg class Laptop {
+@ManyToMany
+List<Student> stud
+}
+
+the above will create extra table created by Laptop table and id will be of laptop, had we not
+written mapped by in student then student would also have created another table so it is necessary to write
+mapped by

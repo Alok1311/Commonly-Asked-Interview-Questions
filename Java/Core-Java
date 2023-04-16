@@ -773,3 +773,91 @@ There are two types of methods in Java: Predefined Method. User-defined Method.
 
 Object - real time entity of class
 Class - blueprint which has all the objects
+
+A static variable means that this variable belongs to the entire class and not any particular instance. Furthermore, inside a method
+is "local scope" to that method. Thus, in java, local scope and global (or class) scope don't mix.So, declare your static variables
+as part of the class which is the proper scope since they are "class variables".
+
+String Pool
+
+String pool is memory area in heap for string
+
+Suppose you initialize a String i.e -> String s1 = "Hello", then s1 -> hello memory reference in string pool
+and now if s2 = "Hello" then again s2 -> hello memory reference in string pool
+but if we do s3 = new String("Hi") this will create object in heap with Hi and also in string pool with Hi(however this hi would be referred
+by some variable from jvm.
+
+int is a primitive data type and takes 32 bits(4 bytes) to store. On other hand Integer is an object which takes
+128 bits (16 bytes) to store its int value
+
+String Literals in Java
+A string literal in Java is basically a sequence of characters from the source character set used by Java programmers
+to populate string objects or to display text to a user. These characters could be anything like letters,
+numbers or symbols which are enclosed within two quotation marks
+
+if s1 = "java"
+s2 = "java"
+s3 = new String("java")
+s4 = new String("java")
+
+above three object will be created, first in the string pool, then s2 will refer to same string pool
+third and fourth will create object in heap but will refer to string pool where java is already
+present
+
+
+What is System.out.println
+In Java, System.out.println() is a statement which prints the argument passed to it. The println() method display
+results on the monitor. Usually, a method is invoked by objectname.methodname()
+System is a final class in java.lang package, out is a static final variable in System class of PrintStream and
+println is a method in PrintStream
+
+Is int 9 and int 09 same
+When you precede a number with 0 ("09" rather than "9"), then Java (and C and many other languages) interpret the
+number to be in octal - base-8. "09" is not a valid number in octal -any single digit can be a maximum of "7"
+(since in octal, numbers go from 0.. 7).
+
+Why we need wrapper
+Firstly the question that hits the programmers is when we have primitive data types then why does there arise a
+need for the concept of wrapper classes in java. It is because of the additional features being there in the
+Wrapper class over the primitive data types when it comes to usage. These methods include primarily methods like
+valueOf(), parseInt(), toString(), and many more.
+
+JAR files allow us to package multiple files in order to use it as a library, plugin, or any kind of application.
+On the other hand, WAR files are used only for web applications. The structure of the archives is also different
+
+Tight Coupling
+In general, Tight coupling means the two classes often change together. In other words, if A knows more than it
+should about the way in which B was implemented, then A and B are tightly coupled.
+
+Loose coupling
+In simple words, loose coupling means they are mostly independent. If the only knowledge that class A has
+about class B, is what class B has exposed through its interface, then class A and class B are said to be
+loosely coupled. In order to over come from the problems of tight coupling between objects, spring framework
+uses dependency injection mechanism with the help of POJO/POJI model and through dependency injection its
+possible to achieve loose coupling.
+
+eg class A implements interface I and class B implements interface I, then A & B are loosely coupled
+
+Loose Coupling is better as problems can arise on changing some class in that.
+
+Why not to use StringBuilder in hashmap
+StringBuilder/Buffer do not override hashCode and equals. This means each instance of the object should be a
+unique hash code and the value or state of it does not matter. You should use the String for a key.
+StringBuilder/Buffer is also mutable which is generally not a good idea to use as a key for a HashMap since
+storing the value under it can cause the value to be inaccessible after modification.
+
+
+What is Byte Stream in Java?
+Byte streams are used to perform input and output of 8-bit bytes. They are used to read bytes
+from the input stream and write bytes to the output stream. Mostly, they are used to read or
+write raw binary data.
+
+Serialization
+It is the press of converting an object into sequence of bytes.
+Deserialization
+The process of converting sequence of bytes to object.
+
+Why java does not use pointers?
+Java do not use pointers because using pointer the memory area can be directly accessed, which is a
+security issue. pointers need so memory spaces at the runtime. to reduce the usage of memory spaces
+java does not support pointers. and also pointers take more time at the run time.

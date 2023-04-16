@@ -78,9 +78,4 @@ flatmap is combination of map and flat operation
 map is used for transformation only but flatmap is used for both transformation and flattening.
 
 
-HashMap vs TreeMap vs LinkedHashMap
-
-HashMap will store in any order
-TreeMap will store in ascending key order
-
-LinkedHashMap will store in insertion order
+Difference between comparator and comparable

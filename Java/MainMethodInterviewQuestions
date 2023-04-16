@@ -23,3 +23,5 @@ No we can not, it will throw rte.
 No, it will throw rte.
 12.If we make a program with main having (int args), then it will not have compile time error, but will not run as
 jvm will look for main with (String[] args)
+13.If we make a program with main having (String[] args) and (String... args) then it will have compile
+time error

@@ -1,0 +1,12 @@
+Unit Testing vs Integration Testing
+Unit Testing is a kind of white box testing, whereas Integration Testing is a kind of black-box testing. For Unit Testing,
+accessibility of code is required, as it tests the written code, while for Integration Testing, access to code is not
+required, since it tests the interactions and interfaces between modules.
+
+What is Test Driven Development in Agile?
+TDD is an agile development methodology where tests are written before the code is developed. In contrast,
+traditional testing is performed after the code is written.
+
+Why TDD is not usually used?
+This means the following problems in such a TDD approach: More test code than the implementation code.
+Not easy to design tests before the implementation is done. Implementation refactoring breaks existing tests.

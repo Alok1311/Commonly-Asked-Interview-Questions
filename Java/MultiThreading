@@ -701,3 +701,30 @@ As we know Java has a feature, Multithreading, which is a process of running mul
 threads are working on the same data, and the value of our data is changing(meaning it is mutable), that scenario is not
 thread-safe and we will get inconsistent results. When a thread is already working on an object and preventing another
 thread on working on the same object, this process is called Thread-Safety.
+
+Object Level Lock
+1.It can be used when you want non-static method or non-static block of the code should be accessed by only one thread
+2.It should always be used to make non-static data thread safe.
+3.Every object the class may have their own lock
+
+public class ObjectLevelLockExample {
+   public void objectLevelLockMethod() {
+      synchronized (this) {
+         //DO your stuff here
+      }
+   }
+}
+
+Class Level Lock
+1.It can be used when we want to prevent multiple threads to enter the synchronized block in any of all available
+instances on runtime.
+2.It should always be used to make static data thread safe.
+3.Multiple objects of class may exist but there is always one class’s class object lock available
+
+Callable
+Java provides two approaches for creating threads one by implementing the Runnable interface and the other by
+inheriting the Thread class. However, one important feature missing with the implementation of the Runnable
+interface is that it is not possible for a thread to return something when it completes its execution, i.e.,
+when the run() method execution is over. In order to support this feature, the Java Callable interface is used.
+
+

@@ -1,0 +1,79 @@
+
+Memory Leak
+In Java, the memory leak is a situation when the garbage collector does not recognize the unused objects and
+they remain in the memory indefinitely that reduces the amount of memory allocated to the application.
+Because the unused objects still being referenced that may lead to OutOfMemoryError.
+It also affects the reliability of the application. Upon memory leak jvm throws java.lang.outOfMemoryError
+
+
+for eg The garbage collector removes unreferenced objects periodically, but it never collects
+the objects that are still being referenced.
+
+Types of Memory Leak
+
+Memory Leak through static field in Method Area
+The first scenario that can cause a potential memory leak is heavy use of static variables.
+In Java, static fields have a life that usually matches the entire lifetime of the running application.
+
+eg
+public class StaticTest {
+    public static List<Double> list = new ArrayList<>();
+
+    public void populateList() {
+        for (int i = 0; i < 10000000; i++) {
+            list.add(Math.random());
+        }
+        Log.info("Debug Point 2");
+    }
+
+    public static void main(String[] args) {
+        Log.info("Debug Point 1");
+        new StaticTest().populateList();
+        Log.info("Debug Point 3");
+    }
+}
+
+Through Java Heap Space
+
+Written above, the use of too many referenced objects
+
+Native Method
+use of too many native classes
+
+Requested array Size exceeds vm
+when we declare some array for a very long size
+
+Swapping Area
+when we use too many variables for swap
+
+Unclosed Resources
+
+Improper hashcode and equals method
+
+How to Detect Memory Leaks
+
+1.Using Memory Profilers
+Memory profilers are tools that can monitor memory usage and help detect memory leaks in an application.
+Profilers can also help with analyzing how resources are allocated within an application, for example how much
+memory and CPU time is being used by each method. This can help identify and narrow down any issues.
+
+2.Verbose Garbage Collection
+To obtain a detailed trace of the Java GC, verbose garbage collection can be enabled. The following parameter can be
+added to the JVM configuration to enable verbose garbage collection:
+
+3.Using Heap Dumps
+Provides snapshot of heap memory at a particular time.They provide information on how many object instances are
+open and how much memory they consume. Heap dumps can help with analyzing how many objects are created in an
+application and if any of them are potentially causing any memory leaks.
+
+4.Use Reference objects to avoid memory leaks
+java.lang.ref package
+Use special reference objects that are easily cleared by garbage collector
+
+Soft Reference Object
+Garbage Collector is required to clear all soft reference object when memory runs low.
+
+Weak Reference Object
+When Garbage Collector detects a weekly referenced object it clears it.
+
+Phantom Reference Object

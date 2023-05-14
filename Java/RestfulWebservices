@@ -231,3 +231,7 @@ Maven vs Jenkins
 A maven is a build tool designed to manage dependencies and the software lifecycle. It is also designed to work
 with plugins that allow users to add other tasks to the standard compile, test, package, install, deploy tasks.
 While, Jenkins is designed for the purpose of implementing Continuous Integration (CI).
+
+
+One service is dependent upon another and the other is taking long time.
+Use asynchronous communication

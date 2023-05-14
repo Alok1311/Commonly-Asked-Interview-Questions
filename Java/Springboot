@@ -106,8 +106,9 @@ IS PUSHED TO PRODUCTION WE CAN CHECK MONITOR OUR APPLICATION USING THESE HTTP EN
  Container started -> bean instantiated -> @post construct annotation with method(eg db connection on) ->
  further methods -> @predestroy annotation with method(db connection close)
 
- ApplicationContext represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the aforementioned beans.
- The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata.
+ ApplicationContext represents the Spring IoC(Inversion of Control) container and is responsible for instantiating,
+ configuring, and assembling the aforementioned beans.The container gets its instructions on what objects to instantiate,
+ configure, and assemble by reading configuration metadata.
 
  Spring provides further stereotype annotations: @Component, @Service, and @Controller. @Component is a generic stereotype for any Spring-managed component.
  @Repository, @Service, and @Controller are specializations of @Component for more specific use cases (in the persistence, service, and presentation layers,

@@ -4,11 +4,11 @@ Java consists of three things
 
 JDK, JVM, JRE
 
-JDK consists of JVM and all the development tools such as compiler, debugger or other tools required to build up application
+JDK consists of JRE and all the development tools such as compiler, debugger or other tools required to build up application
 
-JVM consists of JRE and all the other files such as library files like util, awt, lang packages.
+JRE consists of JVM and all the other files such as library files like util, awt, lang packages.
 
-JRE consists of interpreter and compiler
+JVM consists of interpreter and compiler
 
 First we install JDK, then we have to set environment variables, this is done because the computer would have no knowledge
 of java compiler command javac

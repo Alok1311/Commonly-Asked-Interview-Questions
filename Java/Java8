@@ -1,5 +1,5 @@
 1. Java 8 provides many features, some of them are
-Lamda Expressions
+Lambda Expressions
 Method references,
 Functional interfaces,
 Stream API,
@@ -10,10 +10,13 @@ Optional class,
 Collectors class,
 ForEach() method,
 
-Lamda Expressions :
+Lambda Expressions :
 Anonymous functions that can be referred or shared as an object.
 Lambda expression helps us to write our code in functional style.
 It provides a clear and concise way to implement SAM interface(Single Abstract Method) by using an expression.
+What is an anonymous function?
+Anonymous function is a function define as not bound to an identifier. Because,These are a form of nested function
+in allowing access to variables in the scope of the containing function (non-local functions).
 
 Method Reference :
 Method that provides implementation of methods within an interface.

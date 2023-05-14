@@ -536,7 +536,7 @@ book ticket method checks total seats both seats have accessed 10 as total seats
 can't book the tickets as total were 10 and we are trying to book 12.
 
 So in this case we need synchronization.
-How to achive? simply write keyword synchronized in front of the resource like in this case is book ticket method
+How to acheive? simply write keyword synchronized in front of the resource like in this case is book ticket method
 
 How this process works
 

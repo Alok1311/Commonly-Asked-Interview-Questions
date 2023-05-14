@@ -41,7 +41,8 @@ Internally an ArrayList uses an Object[] Array which is an array of objects. All
 and updating the elements happens in this Object[] array.
 
 Constructors
-To create an ArrayList, First need to create an object of the ArrayList class. ArrayList contains 3 types of constructors in Java 8
+To create an ArrayList, First need to create an object of the ArrayList class. ArrayList contains 3 types of constructors in
+Java 8
 
 ArrayList(): This constructor is to initialize an empty List.
 ArrayList(int capacity): In this constructor, we can pass capacity as a parameter, used to initialize the capacity by the user.
@@ -238,3 +239,11 @@ It is only applicable for List collection implemented classes like arraylist, li
 bi-directional iteration. ListIterator must be used when we want to enumerate elements of List. This cursor
 has more functionality(methods) than iterator. ListIterator object can be created by calling listIterator()
 method present in List interface.
+
+
+How to Clone The Object?
+
+How to make HashMap synchronized?
+According to Oracle docs, in order to synchronize HashMap we need to use Collections. synchronizedMap(hashmap).
+It returns a thread safe map backed up by the specified HashMap. Other important point to note that iterator
+should be used in a synchronized block even if we have synchronized the HashMap explicitly.

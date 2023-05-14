@@ -137,7 +137,7 @@ NAME OF THE ABSTRACT CLASS.
 13. TYPES OF VARIABLES
 
 INSTANCE VARIABLE = DECLARED INSIDE THE CLASS OUTSIDE THE METHOD
-LOCAL VARAIBLE = DECLARED INSIDE THE METHOD
+LOCAL VARIABLE = DECLARED INSIDE THE METHOD
 STATIC VARIABLE = CANNOT BE DEFINED LOCALLY, DEFINED WITH STATIC KEYWORD
 
 14. THIS KEYWORD
@@ -861,3 +861,12 @@ Why java does not use pointers?
 Java do not use pointers because using pointer the memory area can be directly accessed, which is a
 security issue. pointers need so memory spaces at the runtime. to reduce the usage of memory spaces
 java does not support pointers. and also pointers take more time at the run time.
+
+Can we overload static methods?
+Yes, we can overload static methods, we can have two or more static methods with the same name
+but with different parameters.
+
+Can we override static methods?
+NO, we can't override static methods since method overriding relies on dynamic binding at runtime, but
+static methods are bonded at compile time with static binding. As a result, we are unable to override
+static methods.

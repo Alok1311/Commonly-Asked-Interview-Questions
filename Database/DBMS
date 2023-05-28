@@ -166,3 +166,27 @@ Difference between Trigger and Procedure
 Trigger and Procedure both perform a specified task on their execution. The fundamental difference
 between Trigger and Procedure is that the Trigger executes automatically on occurrences of an event
 whereas, the Procedure is executed when it is explicitly invoked.
+
+ACID Properties
+
+ACID (Atomicity, Consistency, Isolation, Durability) is a set of properties that guarantee reliability and correctness
+of transactions in a database management system (DBMS). These properties ensure that database transactions are executed
+reliably and consistently, even in the presence of failures. Let's explore each of the ACID properties:
+
+Atomicity: Either all the operations within a transaction are executed successfully, or none of them are executed at all.
+If any part of the transaction fails, the entire transaction is rolled back, and the database is left unchanged.
+
+Consistency: It ensures that the integrity constraints, defined on the database, are not violated. In other words,
+the data remains consistent before and after the transaction is executed.
+
+Isolation: Isolation ensures that concurrent transactions do not interfere with each other. Each transaction appears
+to execute in isolation, as if it were the only transaction being executed in the system. Isolation prevents conflicts
+between transactions, maintaining data integrity and preventing dirty reads, non-repeatable reads, and phantom reads.
+
+Durability: Durability guarantees that once a transaction is committed, its changes are permanent and will survive
+any subsequent failures, such as power loss or system crashes. The committed transaction's effects are stored in
+a durable medium, such as a disk, and can be recovered in the event of a system failure.
+
+The ACID properties are essential for maintaining data integrity, ensuring reliability, and providing consistent
+results in database transactions. They are crucial in scenarios where multiple users concurrently access and
+modify the same data, preventing issues such as data corruption, data loss, and inconsistent results.

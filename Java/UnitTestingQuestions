@@ -10,3 +10,77 @@ traditional testing is performed after the code is written.
 Why TDD is not usually used?
 This means the following problems in such a TDD approach: More test code than the implementation code.
 Not easy to design tests before the implementation is done. Implementation refactoring breaks existing tests.
+
+Reflection is primarily achieved through the use of the java.lang.reflect package, which provides classes like Class,
+Field, Method, and Constructor that allow you to access and manipulate various aspects of classes and objects dynamically.
+
+Here are some common use cases and applications of reflection in Java:
+
+Dynamic loading and instantiation: Reflection allows you to load and instantiate classes at runtime.
+You can use the Class.forName() method to dynamically load a class, and then use the newInstance() method to create an
+instance of that class.
+
+Introspection and metadata examination: Reflection enables you to examine the structure and properties of classes,
+interfaces, fields, methods, and constructors. You can retrieve information such as class name, superclass,
+implemented interfaces, annotations, field names and types, method signatures, etc. This information can be
+used for various purposes like documentation generation, serialization, object traversal, or
+creating generic frameworks.
+
+Accessing and modifying fields: Reflection allows you to access and modify the values of fields, even private ones.
+You can retrieve field objects using the getField() or getDeclaredField() methods and then set their accessibility
+to true to bypass access restrictions. This can be useful in cases where direct access to fields is required,
+such as in JUnit and Mockito
+
+Invoking methods dynamically: Reflection enables you to invoke methods dynamically at runtime. You can obtain method
+objects using the getMethod() or getDeclaredMethod() methods, and then invoke them on specific instances or classes
+using the invoke() method. This can be handy in scenarios where you need to invoke methods based on dynamically
+determined conditions or configurations.
+
+Creating and manipulating objects dynamically: Reflection allows you to create new instances of classes and invoke
+constructors dynamically. You can retrieve constructor objects using the getConstructor() or getDeclaredConstructor()
+methods, and then use the newInstance() method to create objects. This can be useful when the class to instantiate is
+not known until runtime, or when you want to create instances of classes dynamically.
+
+
+The assert keyword provides a way to express these assertions in code, allowing developers to validate their expectations
+during program development and testing.
+
+Stack Trace
+In Java, a stack trace is a textual representation of the call stack at a particular point in the execution of a program.
+It provides information about the sequence of method calls that led to the current point of execution, including the
+line numbers and the names of the methods involved. The stack trace is an invaluable tool for debugging and
+understanding the flow of execution in a program.
+
+When an exception is thrown in Java, the stack trace is automatically captured and included in the exception object.
+You can retrieve and analyze the stack trace to determine the sequence of method invocations that led to the exception.
+
+public class Example {
+    public static void main(String[] args) {
+        try {
+            method1();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void method1() {
+        method2();
+    }
+
+    public static void method2() {
+        method3();
+    }
+
+    public static void method3() {
+        throw new RuntimeException("Something went wrong!");
+    }
+}
+
+eg
+java.lang.RuntimeException: Something went wrong!
+	at Example.method3(Example.java:19)
+	at Example.method2(Example.java:15)
+	at Example.method1(Example.java:11)
+	at Example.main(Example.java:7)
+
+Static class is that class which has static methods, can also be called utility class

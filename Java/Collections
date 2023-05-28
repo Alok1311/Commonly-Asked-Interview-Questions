@@ -242,8 +242,27 @@ method present in List interface.
 
 
 How to Clone The Object?
+1.Shallow Copy
+2.Deep Copy
+3.Clone
+
 
 How to make HashMap synchronized?
 According to Oracle docs, in order to synchronize HashMap we need to use Collections. synchronizedMap(hashmap).
 It returns a thread safe map backed up by the specified HashMap. Other important point to note that iterator
 should be used in a synchronized block even if we have synchronized the HashMap explicitly.
+
+Difference between BufferedReader and Scanner
+
+Main difference is Scanner constructor takes input of system.in, where as BufferedReader takes input of
+inputstreamreader which takes input of system.in when we have to read input, to convert to int we use
+Integer.parseInt, since BufferedReader takes input from input stream reader, it can also read from files
+here System.in, System is class and in is input stream class. Also since to read we use object of buffered
+reader.read, now if we want integer we need to convert it using Integer.parseInt but scanner classes
+already has methods like sc.nextInt to use.
+
+
+Defining the size of an array is important because it determines the amount of memory that needs to be allocated for
+the array. When you define the size of an array, you are essentially telling the computer how much contiguous memory
+it should reserve to store the elements of the array.
+

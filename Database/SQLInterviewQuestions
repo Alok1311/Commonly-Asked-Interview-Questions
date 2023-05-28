@@ -1,0 +1,81 @@
+Sql query to create database
+create database databasename, if error thrown means database present we can use create database if not exists databasename
+to prevent error
+
+to create table first select database, use dbname
+then to create table create table(id int not null, name varchar(250) not null, address varchar(500))
+
+to copy a table use create table tbname as (select * from tbname2), this will create same structure as well as same data
+we can use where condition such as 1=2 in above select if we only want some limited data
+
+Nth highest salary
+Select * from table order by salary desc limit n-1,1(because 0 based indexing)
+
+SQL Query to find managers
+Select * from employees where employee_id in (select manager_id from managers)
+
+Name of all employees starting with a
+Select * from employees where e_name like a%
+
+alternate records - id % 2 == 1 or 0
+
+duplicate records
+select name, count(*) from table group by name having count(name) > 1
+
+Common records from 2 tables
+Select * from employee inner join emp on employee.id = emp.id
+
+Delete duplicate records
+Delete E1 from Employee E1 inner join Employee E2 where E1.id < E2.id and E1.name = E2.name
+
+If we have to get top n then simply use select * from employee limit 5
+
+Sql to find employees without distinct
+Select dept_id from Employee A where A.id >= All(Select B.id from Employee B where A.dept_id = B.dept_id) order by
+dept_id;
+
+Find max salary of each dept
+select dept_id, Max(salary) from employee group by dept_id
+
+Find department wise count of employees sorted by department count in ascending order
+Select dept.name, count(*) as count from employee e inner join department d on e.dept_id = d.id group by d.name
+order by count
+or
+select dept_id, count(dept_id) from employee group by dept_id order by count(dept_id)
+
+change datatype of column
+alter table modify column new_data_type
+
+Table Field and Record
+Table collection of row and column, entire data
+Field eg = id, name, address
+Record = 1, a, 25
+
+Unique key can have only one null value per column, we can modify unique key column values but not of primary key
+
+Inner Join = returns matching value in both tables
+Cross Join  = cross product of joins
+Self Join = join table within itself
+
+Truncate
+delete all the rows and columns from the table, can't be retrieved back
+
+Drop
+drops entire table, can be retrieved back
+
+Delete
+used to delete rows based on some condition
+
+Constraints
+Rule to specify the rules that we can apply to the type of data
+Column level constraint used for particular columns, table level used for entire table
+
+Difference in and between
+in is used such as where salary in(2500,26000,28000) only these values will be included
+between is for getting values between specific values
+
+To summarize, the main difference between WHERE and HAVING is:
+
+WHERE is used to filter individual rows before any grouping or aggregation takes place.
+HAVING is used to filter the result set after grouping and aggregation have occurred. It operates on the grouped rows.
+

@@ -14,6 +14,7 @@ interface A {
 }
 class Ac implements  A {
 
+    public static final int var = 20;
     @Override
     public int random() {
         return 12;
@@ -42,7 +43,10 @@ public class InterfaceTest {
         System.out.println(ac.defaultMethod());
 
         System.out.println(ac.defaultMethod2());
+        A a = new Ac();
 
+        int var1 = a.var;
+        System.out.println(var1);
     }
     
 }

@@ -143,3 +143,32 @@ List<Student> stud
 the above will create extra table created by Laptop table and id will be of laptop, had we not
 written mapped by in student then student would also have created another table so it is necessary to write
 mapped by
+
+Difference between JPA and Spring Boot JPA
+JPA (Java Persistence API):
+
+JPA is a Java specification for object-relational mapping (ORM) that defines a set of interfaces and annotations for
+persisting Java objects to relational databases.
+It provides a standard way to map Java classes to database tables, perform CRUD operations, and manage relationships
+between entities.
+
+Spring Boot JPA:
+
+Spring Boot JPA is a specific integration of JPA within the Spring Boot framework, which is a framework that simplifies
+the development of Java applications.
+Spring Boot provides a set of auto-configuration classes and conventions that make it easier to work with JPA and
+streamline the configuration and usage of JPA in Spring applications.
+Spring Boot JPA includes features such as automatic configuration of the JPA implementation, simplified setup of the
+entity manager, transaction management, and data access operations.
+Spring Boot JPA leverages the underlying JPA implementation (such as Hibernate) to provide these features.
+
+DAO
+
+DAO stands for Data Access Object. It is a design pattern commonly used in Java applications to abstract the persistence
+layer and provide a way to interact with a data source, such as a database or a web service. The DAO pattern separates
+the business logic from the underlying data access code.
+
+Difference between JPA and Hibernate
+JPA is specification and hibernate is implementation, Hibernate is Object Relation Mapping framework or tool
+that implements and has ways to implement JPA
+

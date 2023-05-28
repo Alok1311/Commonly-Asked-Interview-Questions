@@ -32,6 +32,8 @@ public class AbstractClassTest extends Vehicle{
         System.out.println(Vehicle.b);
         Vehicle.b = "Hi";
         System.out.println(Vehicle.b);
+        vehicle.a = 20;
+        System.out.println(vehicle.a);
 
     }
 }

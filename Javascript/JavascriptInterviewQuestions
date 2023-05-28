@@ -1,0 +1,62 @@
+Callback Function
+
+A callback function is that function which is passed as a parameter inside another function.
+
+Function Declaration
+Declared as a separate statement within the main javascript code.
+
+Function Expression
+Created inside an expression or some other construct.
+
+Cookie
+A cookie is generally a small data that is sent from a website and stored on user's machine by a web browser that
+was used to access the website. Cookies are used to record information for later use and also to record the browsing
+activity on the website.
+eg to create - document.cookie = "key1 = value; key2 = value; expires = date";
+delete = document.cookie = function delete_cookie(name) {
+document.cookie = name += "=; path=/; Expires = date"
+
+Difference between var and let
+
+Both var and let are used for variable and method declarations, the main difference is var is scoped by function
+but let is scoped by block.
+
+function nestedScopeTest() {
+  if (true) {
+    var functionVariable = 1;
+    let blockVariable = 2;
+
+    console.log(functionVariable); // will print 1
+    console.log(blockVariable); // will print 2
+
+    if (true) {
+      console.log(functionVariable); // will print 1
+      console.log(blockVariable); // will print 2
+    }
+  }
+
+  console.log(functionVariable); // will print 1
+  console.log(blockVariable); // will throw an error
+}
+
+Different ways HTML can be accessed in a javascript code
+
+getElementByClass('classname') = gets html element that have the class name
+getElementById('idName') = gets html element by id name
+getElementByTagName('tagName') = gets all the html elements that have specified tag name
+querySelector() = takes css style selector and returns first html element
+
+Document
+the document comes under the windows object and can also be considered it's property
+Window
+Window in javascript is a global object that holds the structure like variable, functions, locations, etc.
+
+High Order Function
+The functions that take a function as a parameter or return function.
+
+Arrow Function
+Short way of writing function,
+eg const Car = (color) => {
+this.color = color;
+}
+these functions cannot be called as constructor

@@ -86,9 +86,10 @@ class someClass2 implements eg1, eg2 {
     }
 }
 
-as we can see both method have diff return type, as compiler does not check for return type, then we can't
-solve this, it will result in compile time error. same case can happen for default, but in static since
-we can't call static method using child object in interface so we can have same method names in interface.
+as we can see both method have diff return type, compiler will be unable to differentiate both the methods
+because of the difference in return type, then we can't solve this, it will result in compile time error.
+same case can happen for default, but in static since we can't call static method using child object in interface
+so we can have same method names in interface.
 
 one interface can extend other interface, for eg b interface extends a interface, now the child class implementing b will
 need to override abstract methods from both a and b.

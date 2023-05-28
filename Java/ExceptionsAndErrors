@@ -16,6 +16,7 @@ Exception vs Error
 Exception occurs because of program but error occurs because of lack of resources.
 Exceptions are recoverable but errors are not.
 Exceptions are of compile time and run time also called as checked or unchecked but errors are only of
+Exceptions can be handled, errors can not be handled
 one type i.e runtime exception
 
 
@@ -41,7 +42,7 @@ Error class is java.type.lang.error
 Throw vs Throws
 
 Throw is used to explicitly throw an exception where as throws is used to declare exception
-Checked exception can not be propogated using throw where as it can be via throws.
+Checked exception can not be propagated using throw where as it can be via throws.
 Throw is used within method whereas throws with the method
 You can only throw one exception where as you can use throws to declare more than one exceptions.
 

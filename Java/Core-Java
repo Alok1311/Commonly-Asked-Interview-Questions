@@ -811,6 +811,9 @@ results on the monitor. Usually, a method is invoked by objectname.methodname()
 System is a final class in java.lang package, out is a static final variable in System class of PrintStream and
 println is a method in PrintStream
 
+How toString gets activated automatically?
+It is activated inside the printstreams method such as println.
+
 Is int 9 and int 09 same
 When you precede a number with 0 ("09" rather than "9"), then Java (and C and many other languages) interpret the
 number to be in octal - base-8. "09" is not a valid number in octal -any single digit can be a maximum of "7"
@@ -870,3 +873,116 @@ Can we override static methods?
 NO, we can't override static methods since method overriding relies on dynamic binding at runtime, but
 static methods are bonded at compile time with static binding. As a result, we are unable to override
 static methods.
+
+
+String intern method
+The intern() method returns a canonical representation of the string, which means that it returns a reference to the unique instance
+of the string in the string pool.
+
+Eg
+
+        String s1 = new String("Hello");
+        String s2 = new String("Hello");
+
+        System.out.println(s1 == s2); // false
+        s1 = s1.intern();
+        s2 = s2.intern();
+        System.out.println(s1 == s2); // true
+
+Prevent a class being subclassed in java
+Use final, this is the same reason string or wrapper classes are final
+
+Transient in java
+Transient is a variables modifier used in serialization. At the time of serialization, if we don’t want to save
+value of a particular variable in a file, then we use transient keyword. When JVM comes across transient keyword,
+it ignores original value of the variable and save default value of that variable data type.
+
+Generics in java
+Generics means parameterized types. The idea is to allow type (Integer, String, … etc., and user-defined types) to be
+a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with
+different data types. An entity such as class, interface, or method that operates on a parameterized type is a
+generic entity.
+
+class Parent {
+    int a = 10;
+}
+public class Practice extends Parent {
+    int a = 20;
+    public static void main(String[] args) {
+        Parent parent = new Practice();
+        int val = parent.a;
+        System.out.println(val);
+    }
+}
+
+The concept demonstrated in the provided code is called variable hiding or variable shadowing.
+In the Practice class, there is an instance variable a with a value of 20, which is declared in the Practice class itself.
+However, the Practice class also extends the Parent class, which has its own instance variable a with a value of 10.
+In the main method, an object of the Practice class is created and assigned to a variable of type Parent. When accessing
+the a variable through the parent reference, it refers to the a variable of the Parent class. This is because variables
+in Java are not polymorphic, and the reference type determines which variable is accessed.
+Therefore, the output of System.out.println(val); would be 10, as it is accessing the a variable of the Parent class through
+the parent reference.
+
+Also in the above remember that parent object cannot call the methods of child object.
+Also child object cannot be initiated directly as parent object meaning Practice p = new Parent();
+if we typecast Practice p = (Practice) new Parent(); this will result in ClassCastException
+
+The ClassCastException is thrown because the (IMPORTANT PONT) Parent class does not inherit the methods and fields
+defined in the Practice class. It is the other way around: the Practice class extends the Parent class, which means
+an instance of Practice is also an instance of Parent. However, the reverse is not true. An instance of Parent is
+not an instance of Practice
+
+Variable hiding in Java refers to the situation where a subclass declares a variable with the same name as a variable in
+its superclass. This causes the variable in the subclass to "hide" the variable in the superclass, leading to different
+variables with the same name coexisting at different levels of the class hierarchy.
+
+Variable hiding
+class Parent {
+    int variable = 10;
+}
+
+class Child extends Parent {
+    int variable = 20;
+
+    void printVariables() {
+        System.out.println("Child variable: " + variable);
+        System.out.println("Parent variable: " + super.variable);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.printVariables();
+    }
+}
+
+Volatile in java
+
+In Java, the volatile keyword is used to indicate that a variable's value may be modified by multiple threads. It ensures
+that when one thread modifies the value of a volatile variable, the change is immediately visible to other threads accessing
+the same variable. In other words, it provides a guarantee of visibility and ordering of variable accesses across multiple
+threads.
+
+In Java, reflection is a feature that allows you to examine and modify the structure and behavior of classes, interfaces,
+fields, methods, and constructors at runtime. It provides a way to introspect the properties and capabilities of objects
+and classes, even if the code working with them was not aware of their existence at compile-time.
+
+Can constructor be private
+Yes, a constructor in Java can be declared as private. When a constructor is marked as private, it means that it can
+only be accessed and invoked from within the same class. It cannot be called by code in other classes, including
+subclasses. Can be done in following situations.
+
+Singleton pattern: In the singleton pattern, a class is designed to have only one instance throughout the entire application.
+To achieve this, the constructor is made private, preventing other classes from directly creating instances. The class
+itself typically provides a public static method that returns the singleton instance.
+
+Utility classes: Utility classes, which typically contain only static methods, are commonly used to provide helper functions
+or common operations. Since utility classes are not meant to be instantiated, their constructors are made private to
+prevent accidental instantiation.
+
+Factory methods: In certain cases, a class may provide static factory methods that create instances of the class with
+specific configurations or based on certain conditions. The constructors of the class can be made private, and the
+factory methods handle the instantiation and return the created objects.
+

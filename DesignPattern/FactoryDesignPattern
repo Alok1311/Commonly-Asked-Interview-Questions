@@ -3,3 +3,211 @@ The factory method pattern entails a factory class with an abstract method for c
 Often, we want to create different objects based on a particular context.
 For example, our application may require a vehicle object. In a nautical environment, we want to create boats,
 but in an aerospace environment, we want to create airplanes:
+
+Difference between Factory Pattern and Abstract Factory Pattern
+
+Factory Pattern: The Factory Pattern provides a central factory class that encapsulates the object creation logic.
+It creates objects of a single type or a hierarchy of related types based on the provided input or conditions.
+
+Abstract Factory Pattern: The Abstract Factory Pattern provides an interface or an abstract class for creating
+families of related or dependent objects. It allows the creation of objects that belong to different but
+related hierarchies. So basically this adds another level of abstraction to the factory pattern
+
+Factory Pattern example
+
+interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+class Square implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Square");
+    }
+}
+
+class ShapeFactory {
+    public Shape createShape(String type) {
+        if (type.equals("Circle")) {
+            return new Circle();
+        } else if (type.equals("Square")) {
+            return new Square();
+        } else {
+            return null; // Invalid shape type
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ShapeFactory factory = new ShapeFactory();
+
+        Shape circle = factory.createShape("Circle");
+        circle.draw();  // Output: Drawing a Circle
+
+        Shape square = factory.createShape("Square");
+        square.draw();  // Output: Drawing a Square
+    }
+}
+In the above example, we have a Shape interface representing different shapes, namely Circle and Square.
+The ShapeFactory class is responsible for creating instances of these shapes based on the type provided.
+The factory class, ShapeFactory, encapsulates the creation logic and provides a method createShape to
+create the appropriate shape objects.
+
+Abstract Factory Class Example:
+
+interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+class Square implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Square");
+    }
+}
+
+interface ShapeFactory {
+    Shape createShape();
+}
+
+class CircleFactory implements ShapeFactory {
+    public Shape createShape() {
+        return new Circle();
+    }
+}
+
+class SquareFactory implements ShapeFactory {
+    public Shape createShape() {
+        return new Square();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ShapeFactory circleFactory = new CircleFactory();
+        Shape circle = circleFactory.createShape();
+        circle.draw();  // Output: Drawing a Circle
+
+        ShapeFactory squareFactory = new SquareFactory();
+        Shape square = squareFactory.createShape();
+        square.draw();  // Output: Drawing a Square
+    }
+}
+In this example, we have an additional level of abstraction. We have an abstract interface ShapeFactory that declares
+the method createShape(), and two concrete classes, CircleFactory and SquareFactory, that implement this interface.
+Each concrete factory is responsible for creating a specific shape object.
+
+The CircleFactory creates instances of Circle, and the SquareFactory creates instances of Square. This way, each
+factory class is focused on creating a specific family of related objects.
+
+By using the Abstract Factory pattern, we can switch between different families of objects by simply changing the
+concrete factory implementation. For example, if we have another set of shapes, such as Triangle and Rectangle,
+we can create a TriangleFactory and a RectangleFactory implementing the ShapeFactory interface, and use them
+interchangeably.
+
+In summary, the Factory class is responsible for creating objects of a specific type, while the Abstract Factory
+class creates families of related objects by providing an interface for creating those objects. The Abstract
+Factory pattern provides a higher level of abstraction and allows easy switching between different families
+of objects.
+
+How to exclude pom features by not changing pom.xml?
+
+by excluding in component scan or removing dependencies from maven
+@ComponentScan(
+    excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.example.web.*"), // Exclude web package
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = com.example.data.JpaConfig.class) // Exclude JPA
+        configuration class
+    }
+)
+
+Stateless session Bean vs Stateful session bean
+
+A Stateless Session Bean (SLSB) is a session bean that does not maintain conversational state between client invocations.
+Each client request is handled independently.
+A Stateful Session Bean (SFSB) is a session bean that maintains conversational state between multiple method invocations
+from a client
+
+example
+
+@Stateless
+public class CalculatorService {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+
+@Stateful
+public class ShoppingCart {
+    private List<Item> items = new ArrayList<>();
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+}
+
+// Client code
+public class Main {
+    @EJB
+    private static CalculatorService calculatorService;
+
+    @EJB
+    private static ShoppingCart shoppingCart;
+
+    public static void main(String[] args) {
+        // Stateless session bean usage
+        int result = calculatorService.add(5, 7);
+        System.out.println("Result: " + result);
+
+        // Stateful session bean usage
+        Item item1 = new Item("Product 1", 10);
+        Item item2 = new Item("Product 2", 15);
+
+        shoppingCart.addItem(item1);
+        shoppingCart.addItem(item2);
+
+        List<Item> items = shoppingCart.getItems();
+        System.out.println("Items in the shopping cart: " + items);
+    }
+}
+
+
+In the example above, the CalculatorService is a stateless session bean (@Stateless) that provides a method for adding
+two numbers. Each invocation of add() is independent of any previous invocations.
+
+On the other hand, the ShoppingCart is a stateful session bean (@Stateful) that maintains the state of a shopping cart
+for a specific client. It allows adding items to the cart and retrieving the list of items.
+
+Difference between JAR, WAR and EAR
+
+JAR
+A JAR file is a package format used to aggregate Java class files, associated metadata, and resources into a single file.
+JAR files are primarily used for packaging and distributing libraries, frameworks, or standalone Java applications.
+
+WAR
+A WAR file is a package format specifically designed for web applications in Java.
+WAR files contain all the necessary components of a web application, including Java class files, web pages (HTML, JSP, etc.),
+server-side scripts (Servlets), configuration files, static content (CSS, JavaScript), and libraries (JAR files) required by
+the application.
+
+EAR
+An EAR file is a package format used for enterprise applications that consist of multiple Java modules and services.
+EAR files provide a way to package and deploy Java EE (Enterprise Edition) applications, which typically include EJB
+(Enterprise JavaBeans) components, web modules (WAR files), and resource adapter modules (RAR files), along with their
+configuration files and libraries. So basically it is a combination of WAR files
+

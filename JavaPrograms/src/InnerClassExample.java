@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 public class InnerClassExample {
     private int a = 10;
 
@@ -6,7 +10,6 @@ public class InnerClassExample {
     InnerClassExample() {
         this.string = "Outer Class";
     }
-
     class InnerClass {
         public int getInnerClassExample() {
             InnerClassExample innerClassExample = new InnerClassExample();

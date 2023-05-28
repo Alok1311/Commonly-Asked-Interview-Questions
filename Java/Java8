@@ -14,15 +14,50 @@ Lambda Expressions :
 Anonymous functions that can be referred or shared as an object.
 Lambda expression helps us to write our code in functional style.
 It provides a clear and concise way to implement SAM interface(Single Abstract Method) by using an expression.
+Basically what lambda expression is all about is that we can access functional interface method in a very
+
+For example, let's say you have a functional interface called Calculator with a single method int calculate(int a, int b).
+You can implement this interface using a lambda expression as follows:
+
+Calculator addition = (a, b) -> a + b;
+int result = addition.calculate(2, 3);
+System.out.println(result); // Output: 5
+
+
 What is an anonymous function?
 Anonymous function is a function define as not bound to an identifier. Because,These are a form of nested function
 in allowing access to variables in the scope of the containing function (non-local functions).
+Basically lambda expression is an anonymous function
 
 Method Reference :
 Method that provides implementation of methods within an interface.
 Java 8 Method reference is used to refer method of functional interface . It is compact and easy form of lambda expression.
 Each time when you are using lambda expression to just referring a method, you can replace your lambda expression with
 method reference.
+
+Method references allow you to pass a method or constructor as a parameter without executing it immediately.
+They provide a concise and readable way to represent a method invocation.
+
+There are four types of method references in Java 8:
+
+Reference to a static method:
+
+ClassName::staticMethodName
+Reference to an instance method of a particular object:
+
+instanceReference::instanceMethodName
+Reference to an instance method of an arbitrary object of a particular type:
+
+ClassName::instanceMethodName
+Reference to a constructor:
+
+ClassName::new
+Here are some examples to illustrate the usage of method references:
+
+Reference to a static method:
+// Example: Calling a static method using method reference
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+numbers.forEach(System.out::println);
 
 Functional Interface :
 An Interface that contains only one abstract method is known as functional interface. It can have any number of default and

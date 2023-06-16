@@ -737,7 +737,7 @@ Error class is java.type.lang.error
 Throw vs Throws
 
 Throw is used to explicitly throw an exception where as throws is used to declare exception
-Checked exception can not be propogated using throw where as it can be via throws.
+Checked exception can not be propagated using throw where as it can be via throws.
 Throw is used within method whereas throws with the method
 You can only throw one exception where as you can use throws to declare more than one exceptions.
 
@@ -986,3 +986,34 @@ Factory methods: In certain cases, a class may provide static factory methods th
 specific configurations or based on certain conditions. The constructors of the class can be made private, and the
 factory methods handle the instantiation and return the created objects.
 
+Encapsulation : Wrapping of data in a single unit. For eg consider class a single unit then instance variable
+name and getName() method and combining them together to get value of name is encapsulation.
+
+In Java, the term "meta space" refers to a memory space used by the Java Virtual Machine (JVM) to store metadata about
+loaded classes, methods, and other runtime information. Before Java 8, this memory space was known as the "permanent
+generation" (PermGen). However, starting from Java 8, PermGen was replaced with meta space.Meta space is a part of the
+native heap and is separate from the Java heap, which is used for storing objects and their instance data. It is
+dynamically allocated by the JVM and can grow or shrink based on the application's needs.
+
+How to make any class immutable
+
+public final class Person {
+    private final String name;
+    private final int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+Main difference between wrapper and primitive are = wrapper follow oops principles, primitive can not contain null,
+wrapper are used in collection and generics.
+}

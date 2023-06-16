@@ -1,0 +1,27 @@
+An SSE (Server-Sent Events) emitter, represented by the SseEmitter class in Spring, is an object that establishes and
+maintains a connection between the server and the client for streaming server-sent events.
+
+In the context of Spring MVC, an SseEmitter object acts as a server-side representation of an SSE connection to a client.
+It allows the server to send server-sent events (SSE) to the connected client over a single HTTP connection.
+
+Here's how an SseEmitter works:
+The client (e.g., a web browser or a React application) initiates an HTTP request to the server, requesting an SSE
+connection.
+
+1.The server creates an instance of SseEmitter and returns it as the response to the client's request.
+2.The client receives the SseEmitter object and keeps the connection open.
+3.The server can use the SseEmitter object to send SSE events to the client.
+4.The server can invoke the send method of SseEmitter to send an SSE event, which contains event data and optional metadata.
+5.The client receives the SSE events from the server as a stream of data. The client can handle these events and
+update the UI in real-time.
+
+The SSE connection remains open until it is closed by either the server or the client. The client can close the
+connection by closing the HTTP connection or if the server sends a specific SSE event to signal the end of the stream.
+
+The SseEmitter class provides methods to send SSE events (send) and handle errors or completion of the SSE
+connection (complete, completeWithError). It also allows setting custom SSE event retry intervals (SseEmitter.retry)
+and timeouts (SseEmitter.timeout).
+
+By using SseEmitter, you can establish a unidirectional server-to-client communication channel for real-time updates.
+The server can send SSE events to the connected clients, enabling real-time data synchronization and live updates in
+the client application.

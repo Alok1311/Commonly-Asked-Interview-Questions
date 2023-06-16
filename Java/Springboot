@@ -1,3 +1,5 @@
+To create spring project we use spring initalizer, go to spring.io and create a project there.
+Starter dependency = set of jars required to run application
 What is Spring Framework
 The Spring Framework is an open-source Java framework that provides comprehensive infrastructure support for
 developing Java applications. It offers a wide range of features and functionalities, making it a popular
@@ -133,7 +135,7 @@ automatic exception translation in your persistence layer.
 
 Spring bean scopes
 
-These are of 5 types
+These are of 7 types
 
 singleton - only one instance of the spring bean will be created for the spring container. This is the default
 spring bean scope. While using this scope, make sure bean doesn’t have shared instance variables otherwise it
@@ -145,7 +147,17 @@ request – This is same as prototype scope, however it’s meant to be used for
 bean will be created for each HTTP request.
 
 session – A new bean will be created for each HTTP session by the container.
-global-session – This is used to create global session beans for Portlet applications.
+
+Global Session: This scope is similar to the session scope, but it is only applicable in the context of a Portlet-based web
+application. A global session-scoped bean is created once per global session and is shared across all portlets within
+the same global session.
+
+Application: This scope is specific to web applications and is available only in a servlet-based Spring application
+context. An application-scoped bean is created once per servlet context and is shared across all requests within
+the same context.
+
+WebSocket: This scope is specific to web applications that use WebSocket communication. A WebSocket-scoped bean
+is created once per WebSocket connection and is available for the duration of the WebSocket connection.
 
 Spring IoC is the mechanism to achieve loose-coupling between Objects dependencies. To achieve loose
 coupling and dynamic binding of the objects at runtime, objects dependencies are injected by other assembler objects.
@@ -257,6 +269,8 @@ scanning, and sets up the Spring application context.
 
 @ComponentScan: This annotation is used to specify the base package(s) to scan for Spring components such as controllers,
 services, repositories, etc. It allows Spring to discover and instantiate beans within the specified package(s).
+It knows how to scan the package as if suppose a class has this annotation so it will scan that entire package that
+class belong to, now if it is in main application means it will scan entire application.
 
 @EnableAutoConfiguration: This annotation enables Spring Boot's auto-configuration mechanism. It automatically configures
 the application based on the classpath dependencies and the properties defined in the project.
@@ -297,14 +311,28 @@ It allows dependencies to be resolved and injected automatically.
 usage by creating beans only when necessary.
 
 @Value: Injects values from properties files or other sources into beans. It is commonly used to inject configuration values.
+eg
+    @Value("${my.property}")
+    private String myProperty;
 
-@PropertySource: Specifies the properties file to be used as a source for bean property values.
+my.property=Hello, World!
+
+
+@PropertySource: Specifies the properties file to be used as a source for bean property values. Suppose an external
+property file called custom.properties then using @PropertySource("classpath:custom.properties") and to get value
+simply use @value on variable
 
 @ConfigurationProperties: Binds and validates the external configuration properties to a Java bean. It simplifies the
-process of reading configuration properties.
+process of reading configuration properties. Suppose there are lot of mail."somekeyword" in the application.properties,
+then rather using value for each, we can simply use this annotation on class level and simply declare the varible
+named eg mail.from in application properties, then first use @ConfigurationProperties(prefix = "mail")
+then simply declare variable named from
+
 
 @Profile: Specifies the profile(s) under which a bean or component is active. It allows defining beans specific to
 certain environments or configurations.
+Used for informing which environment we are using suppose dev. then profile will be "dev" and properties file would be
+@application-dev.properties
 
 @Scope: Specifies the scope of a bean, such as singleton, prototype, request, session, etc. It defines the lifecycle
 and visibility of a bean.
@@ -360,3 +388,11 @@ where multiple entities are associated with a single entity.
 
 @ManyToMany: Defines a many-to-many relationship between two entities. It is used to define a collection-valued
 association where multiple entities are associated with multiple entities.
+
+If we hit requestmapping instead of getmapping, the code will work but it will create ambiguity and less
+expressive
+
+
+Spring is loosely coupled as eg UserRepo repo = new UserRepo(); in this tightly coupled scenario we ourself are creating
+the object and any change in repo will mean we have to change that as well but let's say we di this by autowiring, now
+it is ioc responsibility to create instance of same based on it's type.

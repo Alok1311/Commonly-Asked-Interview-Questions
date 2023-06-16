@@ -1,0 +1,68 @@
+public static byte[] serializeObject(Object obj) throws Exception {
+        ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutStream = new ObjectOutputStream(byteOutStream);
+        objectOutStream.writeObject(obj);
+        objectOutStream.flush();
+        return byteOutStream.toByteArray();
+    }
+
+Deserialization
+
+  public static Object deserializeObject(byte[] bytes) throws Exception {
+        ByteArrayInputStream byteInStream = new ByteArrayInputStream(bytes);
+        ObjectInputStream objectInStream = new ObjectInputStream(byteInStream);
+        return (cast) objectInStream.readObject();
+    }
+
+File Conversion
+
+
+public static void saveObjectToFile(Object obj, String filePath) throws Exception {
+        FileOutputStream fileOutStream = new FileOutputStream(filePath);
+        ObjectOutputStream objectOutStream = new ObjectOutputStream(fileOutStream);
+        objectOutStream.writeObject(obj);
+        objectOutStream.close();
+        fileOutStream.close();
+    }
+
+
+ public static void main(String[] args) {
+        File file = new File("path/to/file.txt"); // Replace with the actual file path
+
+        try (FileInputStream fis = new FileInputStream(file)) {
+            byte[] fileBytes = new byte[(int) file.length()];
+            fis.read(fileBytes);
+            // Now you have the file contents as a byte array
+
+            // Do something with the byte array...
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+  }
+
+
+
+Let's break down the code and understand what is happening step by step:
+
+ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+
+This line creates a new ByteArrayOutputStream object named byteOutStream. It is used to write the serialized object
+into a byte array.
+
+ObjectOutputStream objectOutStream = new ObjectOutputStream(byteOutStream);
+
+Here, a new ObjectOutputStream object named objectOutStream is created, which takes byteOutStream as its parameter.
+This object is responsible for writing the object into byteOutStream.
+
+objectOutStream.writeObject(obj);
+
+This line writes the provided object obj to objectOutStream. The object must be serializable, meaning its class
+implements the Serializable interface.
+
+objectOutStream.flush();
+
+After writing the object, the flush method is called to ensure all the data is written from the stream to byteOutStream.
+return byteOutStream.toByteArray();
+
+Finally, the toByteArray method is called on byteOutStream to obtain the serialized object as a byte array. This array
+is then returned by the method.

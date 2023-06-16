@@ -190,3 +190,55 @@ a durable medium, such as a disk, and can be recovered in the event of a system 
 The ACID properties are essential for maintaining data integrity, ensuring reliability, and providing consistent
 results in database transactions. They are crucial in scenarios where multiple users concurrently access and
 modify the same data, preventing issues such as data corruption, data loss, and inconsistent results.
+
+Select statement
+It is DML Command. It is used to fetch data and store in result set based on certain criteria.
+
+Different clauses
+
+where clause = used to fetch data based on certain condition, used with select, update, delete. Used before group by.
+It filters data individually row wise.
+Having clause = used only with group by, first group by is applied and after that aggregated result is filtered by
+using having.
+From = table from which data is retrieved
+Group by = when the GROUP BY clause is used, the result set is divided into groups based on the specified columns.
+
+Result set
+The "result set" refers to the collection of rows that is returned as the output of a query
+
+Delete entire table
+using Drop = Drop table table name
+using Truncate = Truncate table table name
+using Delete = Delete from table name
+
+Constraints
+Specify particular rules for a particular data in table.
+They can be applied as column level constrain for particular column and limit the type
+of data or table level constraint for entire table to limit data.
+eg not null, default, index, unique, primary key, foreign key
+
+Alter of DDL VS Modify of DML
+
+
+ChatGPT
+In the context of SQL, "ALTER" and "MODIFY" are both keywords used in different scenarios for making changes to database
+objects. However, their specific usage and meaning can vary depending on the context.
+
+ALTER: The "ALTER" keyword is used as part of the "ALTER TABLE" statement to modify the structure of an existing table.
+It allows you to add or drop columns, modify column definitions, rename the table, and perform other table-level
+modifications. The "ALTER TABLE" statement is used to make changes to the structure of the table itself, such
+as adding or removing columns, changing column data types, modifying constraints, and more.
+
+Example:
+
+ALTER TABLE table_name ADD column_name datatype;
+
+MODIFY: The "MODIFY" keyword is used within the "ALTER TABLE" statement specifically to modify the definition of a
+column within an existing table. It is used when you want to change the properties or attributes of a particular
+column, such as the data type, length, or constraints associated with it.
+
+Example:
+ALTER TABLE table_name MODIFY column_name new_datatype;
+
+Note that the "MODIFY" keyword is not supported in all database management systems. Some systems use different keywords,
+such as "ALTER COLUMN" or "MODIFY COLUMN," to achieve the same effect.

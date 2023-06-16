@@ -1,5 +1,7 @@
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamFunctions {
     public static void main(String[] args) {
@@ -27,6 +29,13 @@ public class StreamFunctions {
                 filter(e -> e.startsWith("2")).
                 map(Integer::valueOf).
                 collect(Collectors.toList());
+        //or
+        List<Integer> startsWith1 = list.stream().
+                map(e -> String.valueOf(e)).
+                filter(e -> e.startsWith("1")).
+                map(e -> Integer.valueOf(e)).
+                collect(Collectors.toList());
+
 
         System.out.println(li);
 
@@ -45,13 +54,52 @@ public class StreamFunctions {
         System.out.println(i5);
 
         //second-highest number
-        int h2 = list.stream().sorted(Collections.reverseOrder()).distinct().limit(2).skip(1).findFirst().get();
+        int h2 = list.stream().distinct().sorted(Collections.reverseOrder()).skip(1).findFirst().get();
 
         //second-lowest number
-        int l2 = list.stream().sorted().distinct().limit(2).skip(1).findFirst().get();
+        int l2 = list.stream().distinct().sorted().skip(1).findFirst().get();
 
         System.out.println(h2);
         System.out.println(l2);
+
+        //Count occurrences of each character
+
+        String str = "ilovefootball";
+        String arr[] = str.split("");
+        Map<String , Long> counter = Arrays.stream(arr).collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+
+        counter.forEach((key, val) -> System.out.println("Key ->" + key + "Value ->" + val));
+
+        //Find Duplicates from above string
+        List<String> counter2 = Arrays.stream(str.split("")).
+                collect(Collectors.groupingBy(e -> e, Collectors.counting())).
+                entrySet().stream().
+                filter(x -> x.getValue() > 1).
+                map(e -> e.getKey()).
+                collect(Collectors.toList());
+
+        //in case of non duplicates simply use value == 1 in filter
+
+        //in case of find first non repeating
+
+
+        String first = Arrays.stream(str.split("")).
+                collect(Collectors.groupingBy(e -> e, Collectors.counting())).
+                entrySet().stream().
+                filter(x -> x.getValue() == 1).findFirst().get().getKey();
+
+        System.out.println(first);
+
+        List<String> words = Arrays.asList("hello", "wait", "good", "howareyou");
+        //Longest word in string
+        String longestWord = words.stream().reduce((a, b) -> a.length() > b.length() ? a : b).get();
+
+        //join integers like 1-2
+        String join = String.join("-", list.stream().map(String :: valueOf).collect(Collectors.toList()));
+
+        System.out.println(join);
+
+
 
     }
 }

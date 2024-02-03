@@ -5,8 +5,21 @@ first three lines of it.The program doesn’t compile, because the function main
 throws exception FileNotFoundException. It also uses readLine() and close() methods, and these methods
 also throw checked exception IOException
 
+Checked Exception. -   You must handle this using Try and Catch if there is possibility of this exception.
+ClassNotFoundException
+IOException
+InterprrudException
+NumberFormatException
+
+
 UNCHECKED EXCEPTION: UNCHECKED EXCEPTIONS ARE THE ONE WHICH ARE HANDLED AT RUNTIME BECAUSE THEY CAN NOT BE CHECKED
 AT COMPILE-TIME. FOR EXAMPLE, ARITHMATICEXCEPTION, NULLPOINTEREXCEPTION, ARRAYINDEXOUTOFBOUNDSEXCEPTION, ETC.
+
+Unchecked Exception – There is a choice we can handle them or not.
+Arithmetic Exception
+				IndexOutOfBond Exception
+				NullPointer Exception
+
 
 ERROR: ERROR CAUSE THE PROGRAM TO EXIT SINCE THEY ARE NOT RECOVERABLE. FOR EXAMPLE, OUTOFMEMORYERROR, ASSERTIONERROR, ETC.
 
@@ -45,6 +58,11 @@ Throw is used to explicitly throw an exception where as throws is used to declar
 Checked exception can not be propagated using throw where as it can be via throws.
 Throw is used within method whereas throws with the method
 You can only throw one exception where as you can use throws to declare more than one exceptions.
+
+When we throwing exception in method we should declare in signature of that method that this method 
+throws exception so the method which is calling must catch that exception.
+
+
 
 Checked Exception
 Checked Exceptions

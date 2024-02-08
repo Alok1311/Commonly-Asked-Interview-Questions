@@ -1,0 +1,481 @@
+multithreading
+
+Multithreading in Java allows multiple tasks to be executed concurrently within a single program. This enables applications to utilize system resources more efficiently and improve overall performance. In Java, multithreading is achieved by creating and managing threads. Here's a basic example of multithreading in Java:
+
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + i);
+            try {
+                Thread.sleep(1000); // Pause for 1 second
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyThread thread1 = new MyThread();
+        thread1.setName("Thread 1");
+        thread1.start(); // Start the first thread
+        
+        MyThread thread2 = new MyThread();
+        thread2.setName("Thread 2");
+        thread2.start(); // Start the second thread
+    }
+}
+Explanation:
+
+We create a class MyThread that extends the Thread class. This class overrides the run method, which contains the code to be executed by the thread.
+Inside the run method, a loop prints numbers from 0 to 4 along with the name of the current thread. The thread then sleeps for 1 second in each iteration.
+In the Main class, we create two instances of MyThread (thread1 and thread2) and start them using the start() method. This invokes the run method of each thread in a separate execution thread.
+The output may vary due to the concurrent execution of threads, but it typically shows interleaved messages from both threads.
+In this example, we've created two threads that execute concurrently, each printing numbers with a delay of 1 second between each iteration. This demonstrates the basic concept of multithreading in Java.
+
+
+
+
+
+static variable
+
+In Java, a static variable is a class-level variable that belongs to the class itself rather than to instances (objects) of the class. This means that there will be only one copy of the static variable shared by all instances of the class. Here's an example to illustrate the concept:
+
+Static variables are useful for maintaining a common state among all instances of a class or for defining constants that are common to all instances. However, they should be used carefully as they can lead to unexpected behavior if not properly managed.
+
+
+
+
+singelton class
+
+A Singleton class in Java is a design pattern that restricts the instantiation of a class to one object. This is useful when you want to ensure that only one instance of a class exists throughout the lifetime of an application and provides a global point of access to that instance. Here's an example of a Singleton class in Java:
+
+
+
+multiple ways of syncronization
+
+
+In Java, synchronization is used to control the access of multiple threads to shared resources to prevent race conditions and maintain data consistency. There are multiple ways to achieve synchronization:
+Synchronized Methods:
+Synchronized Blocks:
+Synchronized Statements:
+Using Locks (ReentrantLock):
+Using Atomic Variables:
+
+
+
+
+functional interface
+
+In Java, a functional interface is an interface that contains only one abstract method. Functional interfaces are used to define lambda expressions and method references, which provide a more concise way of implementing single-method interfaces. Java 8 introduced functional interfaces to support the functional programming paradigm and enable the use of lambda expressions.
+@FunctionalInterface
+interface MyFunctionalInterface {
+    void myMethod(); // Single abstract method
+}
+
+
+
+
+can we have non abstract method in functional interface
+
+Yes, a functional interface can have non-abstract (default or static) methods in addition to the single abstract method. However, it's important to note that a functional interface should have only one abstract method to qualify as a functional interface. The presence of multiple abstract methods would violate the functional interface contract.
+
+@FunctionalInterface
+interface MyFunctionalInterface {
+    // Abstract method
+    void myMethod();
+
+    // Non-abstract method (default method)
+    default void defaultMethod() {
+        System.out.println("This is a default method.");
+    }
+}
+
+
+
+
+
+how to write lambda expression
+
+A lambda expression in Java is a concise way to express instances of functional interfaces. It allows you to treat functionality as a method argument or to create anonymous inner classes more succinctly. Lambda expressions are particularly useful when you need to pass a single method behavior as an argument to a method, especially when working with streams, concurrency, or functional programming.
+
+
+
+
+method overloading and method overriding
+
+Method overloading and method overriding are both ways of achieving polymorphism in Java, but they are used in different contexts and have different purposes.
+
+Method Overloading:
+Method overloading refers to defining multiple methods in the same class with the same name but different parameter lists. The methods must have the same name but may differ in the number or types of parameters. Method overloading is resolved at compile time based on the method signature.
+
+Example of method overloading:
+
+class MathOperations {
+    // Method overloading
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+
+
+Method Overriding:
+Method overriding occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. The method in the subclass has the same signature (name and parameters) as the method in the superclass. Method overriding is resolved at runtime based on the actual object type.
+
+Example of method overriding:
+
+class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    // Method overriding
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+
+
+
+explain exception hirercy
+
+In Java, exceptions are organized into a hierarchy based on inheritance. This hierarchy is represented by the Throwable class, which is the root class for all exceptions in Java. The Throwable class has two main subclasses: Exception and Error. These subclasses, along with their further subclasses, form the exception hierarchy in Java.
+
+Here's an overview of the exception hierarchy in Java:
+
+Throwable:
+
+This is the root class for all exceptions and errors in Java.
+It provides two main subclasses: Exception and Error.
+Exception:
+
+Exceptions are problems that can occur during the execution of a program and are recoverable.
+They can further be divided into two categories: checked exceptions and unchecked exceptions.
+a. Checked Exceptions:
+- Checked exceptions are exceptions that must be declared in the method signature using the throws clause or handled using a try-catch block.
+- They are usually external problems that the program should anticipate and handle, such as file I/O errors, database connection errors, etc.
+- Examples: IOException, SQLException, ClassNotFoundException, etc.
+
+b. Unchecked Exceptions:
+- Unchecked exceptions are exceptions that do not need to be declared or handled explicitly.
+- They usually represent programming errors or logic errors that occur at runtime and are not anticipated by the programmer.
+- Examples: NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException, etc.
+
+Error:
+
+Errors are exceptional conditions that are beyond the control of the application and typically indicate serious problems that should not be caught or handled by the application.
+They are usually caused by external factors such as system failures, resource exhaustion, or virtual machine issues.
+Unlike exceptions, errors are not recoverable, and catching them is generally not recommended.
+The exception hierarchy allows for more granular handling of different types of problems that can occur during program execution. By organizing exceptions into a hierarchy, Java provides a structured way to handle various types of exceptions appropriately, depending on the specific situation. It also allows developers to create custom exceptions by subclassing existing exception classes, thereby extending the exception hierarchy to meet the needs of their applications.
+
+
+
+
+cyclic barrier
+
+Cyclic barriers are useful for scenarios where multiple threads need to perform independent tasks and then synchronize at a certain point to combine their results or coordinate further actions. They provide a flexible synchronization mechanism for concurrent programming in Java.
+
+
+
+countdown latch
+
+CountdownLatches are useful for scenarios where a task depends on the completion of multiple independent tasks, or when you want to ensure that certain operations occur only after a set of other operations have completed. They provide a flexible synchronization mechanism for coordinating concurrent operations in Java.
+
+
+
+
+garbage collection
+
+Garbage collection (GC) in Java is the process of automatically reclaiming memory occupied by objects that are no longer in use by the program. Java's garbage collector runs in the background, periodically identifying and deleting objects that are no longer reachable or referenced by any active part of the program. This process helps manage memory efficiently and prevents memory leaks.
+
+Here's how garbage collection works in Java:
+
+Object Creation: When you create objects in Java using the new keyword, memory is allocated on the heap to store those objects.
+
+Reference Tracking: Java uses a concept called reference counting to determine which objects are in use. Each object maintains a count of how many references are pointing to it. When an object's reference count drops to zero, meaning there are no more references pointing to it, the object becomes eligible for garbage collection.
+
+Garbage Collection Process: The garbage collector periodically scans the heap to identify objects that are no longer reachable or referenced by the program. It traverses the object graph starting from the root objects (such as global variables, local variables, and static variables) and marks objects that are still reachable. Any objects not marked during this process are considered garbage and can be safely reclaimed.
+
+Reclamation: Once the garbage collector identifies the garbage objects, it reclaims their memory, making it available for future allocations.
+
+Finalization: Before reclaiming an object, the garbage collector invokes the object's finalize() method (if it's overridden) to allow for any necessary cleanup operations. However, it's important to note that the finalize() method is deprecated in Java, and relying on it for critical cleanup operations is not recommended.
+
+Performance Impact: Garbage collection involves some overhead, as it requires CPU time to scan the heap and reclaim memory. However, modern garbage collectors in Java are highly optimized and strive to minimize disruption to the application's performance.
+
+Java provides different garbage collection algorithms and strategies to suit different application requirements, including:
+
+Serial Garbage Collector: Suitable for single-threaded applications or small-scale applications with limited resources.
+Parallel Garbage Collector: Uses multiple threads to perform garbage collection, suitable for multi-threaded applications running on multiprocessor systems.
+Concurrent Mark-Sweep (CMS) Garbage Collector: Minimizes pauses by performing most of the garbage collection work concurrently with the application's execution.
+Garbage-First (G1) Garbage Collector: Aims to provide high throughput and low latency by dividing the heap into smaller regions and performing garbage collection incrementally.
+Developers can configure garbage collection settings and choose the appropriate garbage collector based on the specific requirements of their application, such as throughput, latency, and memory footprint. Additionally, tools like VisualVM and Java Mission Control provide insights into the garbage collection process, allowing developers to monitor and optimize memory usage in their Java applications.
+
+
+
+
+
+
+how many ways to collect garbage in java
+
+In Java, garbage collection is performed automatically by the Java Virtual Machine (JVM) to reclaim memory occupied by objects that are no longer in use. There are several garbage collection algorithms and strategies employed by different JVM implementations to manage memory efficiently. Here are the main types of garbage collection approaches in Java:
+
+Serial Garbage Collector:
+
+The Serial Garbage Collector, also known as the Serial Collector, uses a single-threaded approach to perform garbage collection.
+It is suitable for single-threaded applications or small-scale applications with limited resources.
+The Serial Collector is enabled by default on client-class machines.
+Parallel Garbage Collector:
+
+The Parallel Garbage Collector, also known as the Throughput Collector, uses multiple threads to perform garbage collection in parallel.
+It is designed to maximize throughput by minimizing the time spent on garbage collection.
+Suitable for multi-threaded applications running on multiprocessor systems.
+It is enabled by default on server-class machines.
+Concurrent Mark-Sweep (CMS) Garbage Collector:
+
+The CMS Garbage Collector is a low-latency garbage collector that minimizes pauses by performing most of the garbage collection work concurrently with the application's execution.
+It operates by dividing the heap into different generations and concurrently marking and sweeping unreachable objects.
+Suitable for applications that require low latency and responsive user interfaces.
+However, CMS has been deprecated since Java 9 in favor of the Garbage-First (G1) Garbage Collector.
+Garbage-First (G1) Garbage Collector:
+
+The Garbage-First Garbage Collector is a modern garbage collector introduced in Java 7 and improved in subsequent versions.
+It aims to provide high throughput and low latency by dividing the heap into smaller regions and performing garbage collection incrementally.
+G1 uses a combination of parallel, concurrent, and incremental techniques to manage memory efficiently while minimizing pause times.
+It is the default garbage collector for most Java applications since Java 9.
+Z Garbage Collector (ZGC):
+
+The Z Garbage Collector is a low-latency garbage collector introduced in Java 11.
+It is designed to minimize pause times by using a concurrent and region-based approach for garbage collection.
+ZGC can handle very large heaps (multi-terabyte) and is suitable for applications requiring extremely low pause times.
+It is not the default garbage collector but can be enabled explicitly.
+These are the main garbage collection approaches in Java, each with its own characteristics, advantages, and suitability for different types of applications. Developers can configure garbage collection settings and choose the appropriate garbage collector based on the specific requirements of their application, such as throughput, latency, and memory footprint. Additionally, newer versions of Java may introduce further improvements and optimizations to garbage collection algorithms.
+
+
+
+permgenspace and metaspace
+
+PermGenSpace (Permanent Generation Space) and Metaspace are memory areas in the Java Virtual Machine (JVM) used for storing metadata and class-related information. However, they serve this purpose differently and have some distinct characteristics:
+
+PermGenSpace (Permanent Generation Space):
+
+PermGenSpace is a memory area used in older versions of Java (up to Java 7) to store metadata related to classes and methods.
+
+It stores the following types of data:
+
+Loaded classes (metadata about classes and their fields/methods)
+Interned strings (String pool)
+Static variables
+Just-In-Time (JIT) compiler optimizations
+One common issue with PermGenSpace is that it has a fixed maximum size and can become full due to continuous class loading, especially in applications that dynamically generate and load classes (e.g., web applications with frequent redeployments).
+
+If PermGenSpace becomes full and cannot accommodate additional classes or metadata, it may lead to OutOfMemoryError: PermGen space errors.
+
+Metaspace:
+
+Metaspace is a replacement for PermGenSpace introduced in Java 8. Instead of being a fixed-size memory area, Metaspace is implemented as a native memory area outside the Java heap.
+
+Metaspace is more flexible and can dynamically expand and contract based on the application's requirements and available system resources.
+
+Unlike PermGenSpace, Metaspace does not have a fixed maximum size, so it is less likely to encounter OutOfMemoryError due to metadata-related issues.
+
+However, Metaspace still needs to be monitored and tuned appropriately, as excessive memory usage in Metaspace can lead to overall performance degradation or even system instability.
+
+In summary, while both PermGenSpace and Metaspace serve the purpose of storing metadata and class-related information in the JVM, Metaspace offers more flexibility and better management of memory resources compared to the fixed-size PermGenSpace. As a result, Metaspace is preferred in modern Java applications running on Java 8 and later versions.
+
+
+
+
+difference between spring boot and spring mvc
+
+Spring Boot and Spring MVC are both frameworks within the broader Spring ecosystem, but they serve different purposes and have different scopes:
+
+Spring MVC:
+
+Spring MVC (Model-View-Controller) is a web framework within the Spring Framework that is used for building web applications. It follows the MVC architectural pattern, where requests are handled by a controller, which interacts with model objects to retrieve data, and then passes the data to a view for rendering.
+
+Spring MVC provides features such as request mapping, data binding, validation, and view resolution, making it a robust framework for building web applications.
+
+Spring MVC is highly configurable and allows developers to integrate with other Spring features such as dependency injection, AOP (Aspect-Oriented Programming), and transaction management.
+
+Spring MVC requires configuration through XML or Java-based configuration classes. Developers need to set up servlet mappings, controller mappings, view resolvers, etc., manually.
+
+Spring Boot:
+
+Spring Boot is an opinionated framework built on top of the Spring Framework that aims to simplify the process of building and deploying production-ready Spring-based applications.
+
+Spring Boot provides out-of-the-box configurations, which reduce the need for manual configuration and boilerplate code. It uses convention over configuration to enable rapid application development.
+
+With Spring Boot, developers can create standalone, production-grade Spring applications with minimal setup. It includes embedded servers (like Tomcat, Jetty, or Undertow), health checks, metrics, and other features to accelerate development.
+
+Spring Boot offers a wide range of starters that provide pre-configured dependencies for common use cases, such as web applications, data access, security, etc.
+
+Spring Boot also promotes microservices architecture by providing features like externalized configuration, profile-based properties, and built-in support for Spring Cloud for distributed systems.
+
+In summary, Spring MVC is a web framework focused on building web applications following the MVC pattern, while Spring Boot is an opinionated framework aimed at simplifying the development and deployment of Spring-based applications, including web applications. Spring Boot can be used to develop Spring MVC applications, but it also supports other application types, such as RESTful services, batch jobs, and more.
+
+
+
+
+
+autowiring
+
+Autowiring is a feature provided by the Spring Framework that automatically injects dependencies into Spring-managed beans. It reduces the need for explicit bean wiring in configuration files, making the configuration process more convenient and less error-prone.
+
+
+
+difference between war and jar
+
+The main difference between a WAR (Web ARchive) file and a JAR (Java ARchive) file lies in their purpose and structure:
+
+Purpose:
+
+WAR (Web ARchive): A WAR file is used to package and deploy web applications in Java. It contains web components such as servlets, JSPs (JavaServer Pages), HTML, JavaScript, CSS, and other resources required to run a web application on a web server. A WAR file is typically deployed to a servlet container or application server, such as Apache Tomcat, Jetty, or JBoss.
+JAR (Java ARchive): A JAR file is used to package Java classes, resources, libraries, and metadata into a single file. It is commonly used for distributing Java libraries, standalone applications, or executable Java programs. JAR files are executed using the java command or can be included as dependencies in other projects.
+Structure:
+
+WAR (Web ARchive): A WAR file follows a specific directory structure mandated by the Java EE specification. It typically contains the following directories:
+WEB-INF: Contains configuration files and classes that are specific to the web application, including web.xml (deployment descriptor), classes (compiled Java classes), lib (third-party libraries or JAR files required by the application).
+META-INF: Contains metadata information, such as MANIFEST.MF file.
+Other directories: Contains web resources such as JSP files, HTML files, CSS files, JavaScript files, images, etc.
+JAR (Java ARchive): A JAR file is a compressed archive file in ZIP format that can contain Java classes, resources, libraries, and metadata. It typically contains:
+.class files: Compiled Java classes.
+Resources: Non-class files required by the application, such as property files, XML files, etc.
+META-INF: Contains metadata information, such as MANIFEST.MF file, used for specifying main class, version, dependencies, etc.
+In summary, while both WAR and JAR files are archive files used in Java development, they serve different purposes and have different structures. WAR files are used for packaging and deploying web applications, while JAR files are used for packaging Java classes, libraries, and resources. Understanding the differences between them is crucial for developing and deploying Java applications effectively.
+
+
+
+
+Map vs flatmap in stream 
+
+In Java Streams, both map() and flatMap() are intermediate operations used for transforming elements in a stream. However, they differ in their behavior and how they handle nested streams or collections.
+
+map():
+
+The map() operation applies a given function to each element in the stream and returns a new stream consisting of the results of applying the function to each element.
+It performs a one-to-one mapping of elements from input to output, where each input element is transformed into exactly one output element.
+If the function applied by map() returns a stream or a collection, the result is a stream of streams or a stream of collections. To flatten this nested structure into a single stream, you would need to use flatMap().
+Example:
+List<String> words = Arrays.asList("hello", "world", "java");
+List<String> upperCaseWords = words.stream()
+                                  .map(String::toUpperCase)
+                                  .collect(Collectors.toList());
+
+
+
+
+In Java Streams, both map() and flatMap() are intermediate operations used for transforming elements in a stream. However, they differ in their behavior and how they handle nested streams or collections.
+
+map():
+
+The map() operation applies a given function to each element in the stream and returns a new stream consisting of the results of applying the function to each element.
+It performs a one-to-one mapping of elements from input to output, where each input element is transformed into exactly one output element.
+If the function applied by map() returns a stream or a collection, the result is a stream of streams or a stream of collections. To flatten this nested structure into a single stream, you would need to use flatMap().
+Example:
+
+java
+Copy code
+List<String> words = Arrays.asList("hello", "world", "java");
+List<String> upperCaseWords = words.stream()
+                                  .map(String::toUpperCase)
+                                  .collect(Collectors.toList());
+flatMap():
+
+The flatMap() operation is similar to map(), but it flattens the results of applying a function to each element in the stream into a single stream.
+It performs a one-to-many mapping, where each input element can be transformed into zero or more output elements.
+If the function applied by flatMap() returns a stream or a collection, the elements of each resulting stream or collection are added to the output stream individually.
+This is useful for scenarios where you have nested collections or streams, and you want to flatten them into a single stream.
+Example:
+
+List<List<Integer>> numbers = Arrays.asList(Arrays.asList(1, 2), Arrays.asList(3, 4), Arrays.asList(5, 6));
+List<Integer> flattenedNumbers = numbers.stream()
+                                       .flatMap(Collection::stream)
+                                       .collect(Collectors.toList());
+
+In summary:
+
+Use map() for one-to-one transformations where each input element is transformed into exactly one output element.
+Use flatMap() for one-to-many transformations where each input element can be transformed into zero or more output elements, and you want to flatten nested collections or streams into a single stream.
+
+
+
+
+Different stream method 
+
+
+Java Streams provide various methods to perform operations on elements in a stream. Here are some commonly used methods categorized based on their functionality:
+
+Intermediate Operations:
+
+Intermediate operations are operations that transform a stream into another stream. They are typically used for filtering, mapping, sorting, and transforming elements in the stream.
+Examples include:
+filter(Predicate): Filters elements based on a specified predicate.
+map(Function): Transforms each element using a given function.
+flatMap(Function): Flattens nested streams or collections and applies a function to each element.
+distinct(): Removes duplicate elements from the stream.
+sorted(): Sorts the elements of the stream.
+limit(long): Limits the number of elements in the stream.
+skip(long): Skips the specified number of elements in the stream.
+Terminal Operations:
+
+Terminal operations are operations that produce a result or a side-effect and terminate the stream. They trigger the processing of elements in the stream.
+Examples include:
+forEach(Consumer): Performs an action on each element of the stream.
+collect(Collector): Collects the elements of the stream into a collection or other data structure.
+reduce(BinaryOperator): Performs a reduction operation on the elements of the stream.
+count(): Returns the count of elements in the stream.
+anyMatch(Predicate): Checks if any element matches the given predicate.
+allMatch(Predicate): Checks if all elements match the given predicate.
+noneMatch(Predicate): Checks if none of the elements match the given predicate.
+findFirst(): Returns the first element of the stream (if any).
+findAny(): Returns any element of the stream (if any).
+Short-circuiting Operations:
+
+Short-circuiting operations are terminal operations that may not process all elements of the stream and terminate early based on a certain condition.
+Examples include:
+findFirst()
+findAny()
+anyMatch(Predicate)
+allMatch(Predicate)
+noneMatch(Predicate)
+limit(long)
+skip(long)
+These are just some of the commonly used methods provided by Java Streams. The Stream API offers a rich set of operations for processing and manipulating collections of elements in a functional style.
+
+
+
+
+Return type of lambda expression 
+
+the return type of a lambda expression is determined by the functional interface to which it is assigned, and it matches the return type of the single abstract method in the interface.
+
+
+
+When do we use lambda expression and when normal function 
+
+use lambda expressions for simple, one-off operations or when brevity and readability are important. Use regular methods for complex logic, reusable code, and easier testing. It's also essential to follow the coding standards and conventions of your project or team when making the decision between lambda expressions and regular methods.
+
+
+Serial stream vs parallel stream
+
+Use serial streams for simple or sequential processing of small to medium-sized datasets.
+Use parallel streams for processing large datasets or performing CPU-intensive operations that can benefit from parallelism.
+It's important to note that not all operations are suitable for parallel execution, and parallel streams may introduce overhead in certain scenarios. Therefore, it's essential to profile and test the performance of both serial and parallel streams to determine the optimal approach for your specific use case.
+
+
+
+
+During reading from database which is better arraylist or linklist 
+
+If you primarily perform random access or need efficient access by index, ArrayList is a better choice.
+If you primarily perform insertion or deletion operations, especially at the beginning or middle of the list, LinkedList may be more suitable.
+For sequential access patterns, such as reading data from a database and processing it sequentially, ArrayList is generally preferred due to its efficient random access capabilities and lower memory overhead.

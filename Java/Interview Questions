@@ -1,5 +1,6 @@
 multithreading
 
+
 Multithreading in Java allows multiple tasks to be executed concurrently within a single program. This enables applications to utilize system resources more efficiently and improve overall performance. In Java, multithreading is achieved by creating and managing threads. Here's a basic example of multithreading in Java:
 
 class MyThread extends Thread {
